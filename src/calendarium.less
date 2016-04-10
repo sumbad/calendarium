@@ -1,0 +1,738 @@
+@calendarium__background: #307E96;
+@calendarium__color: #FFFFFF;
+@calendarium__width: 280px;
+@calendarium__height: 195px;
+
+
+@main-panel__background: @calendarium__background;
+@main-panel__color: #FFFFFF;
+@main-panel__width: 90px;
+@main-panel__height: 160px;
+
+
+@control-panel__background: @calendarium__background;
+@control-panel__color: #307E96;
+@control-panel__width: 280px;
+@control-panel__height: 35px;
+
+
+@date-panel__background: #FFFFFF;
+@date-panel__color: #727070;
+@date-panel__width: 190px;
+@date-panel__height: 160px;
+
+
+
+
+.ardp-date-picker {
+    font-size:16px;
+    font-family:Arial;
+    
+    /* Применяется для изменения алгоритма расчёта ширины и высоты элемента. */
+    box-sizing: border-box; /* Ширина блока с полями но не отступов (margin). Используется IE в режиме совместимости */
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .calendarium {
+        position: absolute;
+        z-index: 10;
+        width: @calendarium__width;
+        height: @calendarium__height;
+        background: @calendarium__background;
+        padding: 0;
+        color: @calendarium__color;
+        border-radius: 1px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+        
+        .main-panel {
+            float: left;
+            width: @main-panel__width;
+            height: @main-panel__height;
+            background: @main-panel__background;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 5px;
+            
+            .chosen-day {
+                font-size: 2.5em;
+            }
+            
+            .chosen-month {
+                font-size: 1.1em;
+            }
+            
+            .chosen-year {
+                font-size: 1.5em;
+            }
+            
+            .chosen-time {
+                font-size: 1.6em;
+                display: flex;
+                align-items: center;
+
+                .arrow-up {
+                    width: 0; 
+                    height: 0; 
+                    border-left: 7px solid transparent;
+                    border-right: 7px solid transparent;
+                    border-bottom: 9px solid @main-panel__color;
+                    margin-left: 7px;
+                    position: relative;
+                    cursor: pointer;
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        border-left: 3px solid transparent;
+                        border-right: 3px solid transparent;
+                        border-bottom: 4px solid @main-panel__background;
+                        margin: 3px 0 0 -3px;
+                    }
+                    &:hover:after {
+                        display: none;
+                    }       
+                }
+
+                .arrow-down {
+                    width: 0; 
+                    height: 0; 
+                    border-left: 7px solid transparent;
+                    border-right: 7px solid transparent;
+                    border-top: 9px solid @main-panel__color;
+                    margin-left: 7px;
+                    position: relative;
+                    cursor: pointer;
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        border-left: 3px solid transparent;
+                        border-right: 3px solid transparent;
+                        border-top: 4px solid @main-panel__background;
+                        margin: -7px 0 0 -3px;
+                    }
+                    &:hover:after {
+                        display: none;
+                    }                
+                }
+            }
+            
+            .selected {
+                font-weight: bold;
+            }
+        }
+        
+        .date-panel {
+            float: left;
+            width: @date-panel__width;
+            height: @date-panel__height;
+            background: @date-panel__background;
+            color: @date-panel__color;
+            
+            .weeks {
+                float: left;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative;               
+                
+                .week-header {
+                    float: left;
+                    width: 100%;
+                    height: 30px;
+                    margin-top: 8px;
+                    display: table;
+                    padding-bottom: 3px;
+                    border-bottom: solid 1px #CCC;
+                    margin-bottom: 3px;
+
+                    & > span {
+                        float: left;
+                        width: 14.285714285714286%;
+                        font-size: 1em;
+                        // text-transform: uppercase;
+                        color: @date-panel__color;
+                        // font-weight: bold;
+                        text-align: center;
+                        vertical-align: center;
+                        
+                        &.holiday{
+                            color: #e95552;
+                        }
+                    }
+                }
+                
+                .week-body > div {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    
+                    &.current {
+                    left: 0;
+                    }
+                    
+                    &.other {
+                        left: 250px;
+                        
+                        &.right {
+                            left: -250px;
+                        }
+                    }
+                    
+                    // &.sliding {
+                    //     transition: transform 250ms ease;
+                    //     // -webkit-transition: -webkit-transform 250ms ease;
+                        
+                    //     &.left {
+                    //         transform: translate3d(-250px, 0, 0);
+                    //         // -webkit-transform: translate3d(-250px, 0, 0);
+                    //     }
+                        
+                    //     &.right {
+                    //         transform: translate3d(250px, 0, 0);
+                    //         // -webkit-transform: translate3d(250px, 0, 0);
+                    //     }
+                    // }
+
+                    .week {
+                        float: left;
+                        width: 100%;
+
+                        .day {
+                            float: left;
+                            width: 14.285714285714286%;
+                            font-size: 0.8em;
+                            padding: 4px 0;
+                            cursor: pointer;
+                            text-align: center;
+                            border-radius: 3px;
+
+                            &:hover {
+                                background: #EAEAEA;
+                            }
+
+                            &.other-month {
+                                color: #AAA;
+                            }
+
+                            &.disabled {
+                                color: #E0E0E0;
+                                cursor: default;
+
+                                &:hover {
+                                    background: transparent !important;
+                                }
+                            }
+
+                            &.today {
+                                background: lighten(@calendarium__background, 15%);
+                                color: white;
+                            }
+
+                            &.selected {
+                                background: @calendarium__background;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+                
+
+            }
+            
+            .months {
+                float: left;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative;  
+                padding: 5px;
+                &>ul{
+                    float: left;
+                    width: 50%;
+                    height: 100%;
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    .month {
+                        float: left;
+                        width: 100%;
+                        height: 16.66666666666667%;
+                        font-size: 0.8em;
+                        padding: 4px 0;
+                        cursor: pointer;
+                        text-align: center;
+                        border-radius: 3px;
+                        &:hover {
+                            background: #EAEAEA;
+                        }
+                        &.other-month {
+                            color: #AAA;
+                        }
+                        &.disabled {
+                            color: #E0E0E0;
+                            cursor: default;
+                            &:hover {
+                                background: transparent !important;
+                            }
+                        }
+                        &.today {
+                            background: lighten(@calendarium__background, 15%);
+                            color: white;
+                        }
+                        &.selected {
+                            background: @calendarium__background;
+                            color: white;
+                        }                    
+                    }       
+                }
+            }
+            
+            .years {
+                float: left;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative;  
+                padding: 5px;
+                ul{
+                    float: left;
+                    width: 40%;
+                    height: 100%;
+                    list-style-type: none;
+                    padding: 0;
+                    margin: 0;
+                    .year {
+                        float: left;
+                        width: 100%;
+                        height: 16.66666666666667%;
+                        font-size: 0.8em;
+                        padding: 4px 0;
+                        cursor: pointer;
+                        text-align: center;
+                        border-radius: 3px;
+                        &:hover {
+                            background: #EAEAEA;
+                        }
+                        &.other-month {
+                            color: #AAA;
+                        }
+                        &.disabled {
+                            color: #E0E0E0;
+                            cursor: default;
+                            &:hover {
+                                background: transparent !important;
+                            }
+                        }
+                        &.today {
+                            background: lighten(@calendarium__background, 15%);
+                            color: white;
+                        }
+                        &.selected {
+                            background: @calendarium__background;
+                            color: white;
+                        }                    
+                    }    
+                }
+                .arrow-left {
+                    position: relative;
+                    cursor: pointer;
+                    top: 50%;
+                    margin-top: -15px;
+                    float: left;
+                    width: 10%; 
+                    height: 0; 
+                    border-top: 15px solid transparent;
+	                border-bottom: 15px solid transparent; 
+	                border-right: 15px solid @main-panel__background; 
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        border-top: 8px solid transparent;
+	                    border-bottom: 8px solid transparent; 
+	                    border-right: 8px solid @main-panel__color; 
+                        margin: -8px 0px 0px 7px;
+                    }
+                    &:hover:after {
+                        display: none;
+                    }                
+                } 
+                .arrow-right {
+                    position: relative;
+                    cursor: pointer;
+                    top: 50%;
+                    margin-top: -15px;
+                    float: left;
+                    width: 10%; 
+                    height: 0; 
+                    border-top: 15px solid transparent;
+	                border-bottom: 15px solid transparent; 
+	                border-left: 15px solid @main-panel__background; 
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        border-top: 8px solid transparent;
+	                    border-bottom: 8px solid transparent; 
+	                    border-left: 8px solid @main-panel__color; 
+                        margin: -8px 0px 0px -12px;
+                    }
+                    &:hover:after {
+                        display: none;
+                    }                
+                } 
+            }
+            
+            .hours {
+                float: left;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative;               
+                padding: 5px;
+                .hour {
+                    float: left;
+                    width: 25%;
+                    height: 16.66666666666667%;
+                    font-size: 0.8em;
+                    padding: 4px 0;
+                    cursor: pointer;
+                    text-align: center;
+                    border-radius: 3px;
+
+                    &:hover {
+                        background: #EAEAEA;
+                    }
+
+                    &.other-month {
+                        color: #AAA;
+                    }
+
+                    &.disabled {
+                        color: #E0E0E0;
+                        cursor: default;
+
+                        &:hover {
+                            background: transparent !important;
+                        }
+                    }
+
+                    &.today {
+                        background: lighten(@calendarium__background, 15%);
+                        color: white;
+                    }
+
+                    &.selected {
+                        background: @calendarium__background;
+                        color: white;
+                    }
+                }             
+            }
+            
+            .minutes {
+                float: left;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative;               
+                padding: 5px;
+                .minute {
+                    float: left;
+                    width: 33.33333333333333%;
+                    height: 25%;
+                    font-size: 0.8em;
+                    padding: 12px 0;
+                    cursor: pointer;
+                    text-align: center;
+                    border-radius: 3px;
+
+                    &:hover {
+                        background: #EAEAEA;
+                    }
+
+                    &.other-month {
+                        color: #AAA;
+                    }
+
+                    &.disabled {
+                        color: #E0E0E0;
+                        cursor: default;
+
+                        &:hover {
+                            background: transparent !important;
+                        }
+                    }
+
+                    &.today {
+                        background: lighten(@calendarium__background, 15%);
+                        color: white;
+                    }
+
+                    &.selected {
+                        background: @calendarium__background;
+                        color: white;
+                    }
+                }             
+            }
+        }
+        
+        .control-panel {
+            float: left;
+            width: @control-panel__width;
+            height: @control-panel__height;
+            background: @control-panel__background;
+            
+            display: flex;
+            justify-content: space-between;
+            padding: 6px;
+        }
+        
+        
+        
+        
+        
+.button-contour {
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    // margin: 0 auto;
+    // padding: 5px 2px;
+    padding-top: 4px; 
+    display: block;
+    outline: 0;
+    background-color: @calendarium__background;
+    border: 1px solid darken(@calendarium__color, 10%);
+    color: @calendarium__color;
+    border-radius: 2px;
+    transition: all 0.2s ease-out;
+
+    &:hover, &.hover {
+        background-color: @calendarium__color;
+        color: @calendarium__background;
+        border-color: @calendarium__background;
+    }
+    &:active, &.active {
+        transition: all 0.01s;
+        background-color: darken(@calendarium__color, 10%);
+        color: @calendarium__background;
+        border-color: darken(@calendarium__color, 8%);
+    }
+}
+       
+        
+        
+        
+        
+        /////////////////////////////////////////////////////////
+
+.button_relief {
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.6;
+    outline: 0;
+    transition: all .1s;
+    border-radius: 2px;
+    border: 1px solid lighten(@calendarium__background, 5%);
+    background: lighten(@calendarium__background, 5%);
+    box-shadow: inset 0 1px 0 lighten(@calendarium__background, 5%), 0 2px 2px darken(@calendarium__background, 5%);
+    color: lighten(@calendarium__color, 5%);
+    &:hover, &.hover {
+        color: @calendarium__color;
+        border: 1px solid darken(@calendarium__background, 5%);
+        background: @calendarium__background;
+        box-shadow: none;      
+    }
+    &:active, &.active {
+        background: darken(@calendarium__background, 5%);
+        color: @calendarium__color;
+        box-shadow: none;
+    }
+}
+
+        /////////////////////////////////////////////////////////
+        
+        
+        
+        
+        
+        
+        // &.calendarium-show {
+        //     visibility: visible;
+        //     opacity: 1;
+        //     /* Переход */
+        //     transition: opacity 100ms linear;     
+        // }
+        
+        // &.calendarium-hide {
+        //     visibility: hidden;
+        //     opacity: 0;
+        //     transition: visibility 0s 100ms, opacity 100ms linear;
+        // }
+        
+        // .month-header {
+        //     float: left;
+        //     width: 100%;
+        //     //display: -webkit-flex;
+        //     display: flex;
+        //     //-webkit-justify-content: space-between;
+        //     justify-content: space-between;
+        //     align-items: center;
+            
+        //     & > i {
+        //         font-weight: bold;
+        //         padding: 5px 8px;
+        //         border-radius: 3px;
+        //         cursor: pointer;
+        //         font-style:normal;
+        //         font-size:0.7em;
+                
+        //         &:hover {
+        //             background-color: @calendarium__background;
+        //             color: white;
+        //         }
+        //     }
+        // }
+       
+
+    }
+}
+
+
+// div.ardp-date-picker {
+//   font-size:16px;
+//   font-family:Arial;
+//   box-sizing:border-box;
+// }
+// div.ardp-date-picker * {
+//     box-sizing:border-box;
+// }
+// div.ardp-date-picker div.calendar {
+//   position: absolute;
+//   z-index: 10;
+//   background: white;
+//   width: 260px;
+//   padding: 5px;
+//   color: #244152;
+//   border-radius: 3px;
+//   height: 203px;
+//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+//   overflow: hidden;
+// }
+// div.ardp-date-picker div.calendar.calendar-show {
+//   visibility: visible;
+//   opacity: 1;
+//   transition: opacity 100ms linear;
+// }
+// div.ardp-date-picker div.calendar.calendar-hide {
+//   visibility: hidden;
+//   opacity: 0;
+//   transition: visibility 0s 100ms, opacity 100ms linear;
+// }
+// div.ardp-date-picker div.calendar div.month-header {
+//   float: left;
+//   width: 100%;
+//   display: -webkit-flex;
+//   display: flex;
+//   -webkit-justify-content: space-between;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+// div.ardp-date-picker div.calendar div.month-header > i {
+//   font-weight: bold;
+//   padding: 5px 8px;
+//   border-radius: 3px;
+//   cursor: pointer;
+//   font-style:normal;
+//   font-size:0.7em;
+// }
+// div.ardp-date-picker div.calendar div.month-header > i:hover {
+//   background-color: #026aa7;
+//   color: white;
+// }
+// div.ardp-date-picker div.calendar div.week-header {
+//   float: left;
+//   width: 100%;
+//   margin-top: 8px;
+//   display: table;
+//   padding-bottom: 3px;
+//   border-bottom: solid 1px #CCC;
+//   margin-bottom: 3px;
+// }
+// div.ardp-date-picker div.calendar div.week-header > span {
+//   float: left;
+//   width: 14.285714285714286%;
+//   font-size: 0.6em;
+//   text-transform: uppercase;
+//   color: #026aa7;
+//   font-weight: bold;
+//   text-align: center;
+// }
+// div.ardp-date-picker div.calendar div.weeks {
+//   float: left;
+//   width: 100%;
+//   overflow: hidden;
+//   position: relative;
+//   height: 140px;
+// }
+// div.ardp-date-picker div.calendar div.weeks > div {
+//   position: absolute;
+//   width: 250px;
+// }
+// div.ardp-date-picker div.calendar div.weeks > div.current {
+//   left: 0;
+// }
+// div.ardp-date-picker div.calendar div.weeks > div.other {
+//   left: 250px;
+// }
+// div.ardp-date-picker div.calendar div.weeks > div.other.right {
+//   left: -250px;
+// }
+// div.ardp-date-picker div.calendar div.weeks > div.sliding {
+//   transition: transform 250ms ease;
+//   -webkit-transition: -webkit-transform 250ms ease;
+// }
+// div.ardp-date-picker div.calendar div.weeks > div.sliding.left {
+//   transform: translate3d(-250px, 0, 0);
+//   -webkit-transform: translate3d(-250px, 0, 0);
+// }
+// div.ardp-date-picker div.calendar div.weeks > div.sliding.right {
+//   transform: translate3d(250px, 0, 0);
+//   -webkit-transform: translate3d(250px, 0, 0);
+// }
+// div.ardp-date-picker div.calendar div.weeks div.week {
+//   float: left;
+//   width: 100%;
+// }
+// div.ardp-date-picker div.calendar div.weeks div.week div.day {
+//   float: left;
+//   width: 14.285714285714286%;
+//   font-size: 0.8em;
+//   padding: 4px 0;
+//   cursor: pointer;
+//   text-align: center;
+//   border-radius: 3px;
+// }
+// div.ardp-date-picker div.calendar div.weeks div.week div.day:hover {
+//   background: #EAEAEA;
+// }
+// div.ardp-date-picker div.calendar div.weeks div.week div.day.other-month {
+//   color: #AAA;
+// }
+// div.ardp-date-picker div.calendar div.weeks div.week div.day.disabled {
+//   color: #E0E0E0;
+//   cursor: default;
+// }
+// div.ardp-date-picker div.calendar div.weeks div.week div.day.disabled:hover {
+//   background: transparent !important;
+// }
+// div.ardp-date-picker div.calendar div.weeks div.week div.day.today {
+//   background: #68b53e;
+//   color: white;
+// }
+// div.ardp-date-picker div.calendar div.weeks div.week div.day.selected {
+//   background: #026aa7;
+//   color: white;
+// }
