@@ -4,7 +4,7 @@
   "description": "React datetime picker",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --content-base distr/",
+    "start": "webpack-dev-server --progress --colors --content-base example/",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

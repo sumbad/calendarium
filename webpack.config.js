@@ -11,7 +11,8 @@ const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
     src: path.join(__dirname, 'src'),
     node_modules: path.join(__dirname, 'node_modules'),
-    distr: path.join(__dirname, 'distr')
+    distr: path.join(__dirname, 'distr'),
+    example: path.join(__dirname, 'example')
 };
 
 var BASE_CFG = {
@@ -23,7 +24,7 @@ var BASE_CFG = {
             {
                 test: /\.ts(x?)$/,
                 loader: 'ts-loader',
-                include: PATHS.src
+                include: [PATHS.src, PATHS.example]
             },
             {
                 test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -40,19 +41,27 @@ var BASE_CFG = {
 
 
 var FRONTEND_CFG = _.merge(BASE_CFG, {
-    target: 'web',
-    context: PATHS.src,
+    //context: PATHS.src,
     entry: {
-        index: './index.tsx'
+        'dist/calendarium': [path.join(PATHS.src, 'Calendarium.tsx')],// './index.js',
+        'example/bundle': path.join(PATHS.example, 'app.tsx')
+        // index: path.join(PATHS.src, 'index.tsx'),
     },
     output: {
-        path: PATHS.distr,
-        filename: 'index.js',
-        publicPath: '/'
+        path: __dirname,
+        filename: '[name].js'
+        // publicPath: '/'
     },
     plugins: [
+        // Make html file from template
+        new HtmlWebpackPlugin({
+            template: path.join(PATHS.example,'index.html'),
+            filename: 'index.html',
+            title: 'Calendarium',
+            inject: false
+        })
         // Basic Usage
-        new HtmlWebpackPlugin(),
+        //new HtmlWebpackPlugin()
     ]
 });
 
@@ -79,11 +88,11 @@ var DEV_CFG = {
 
 var BUILD_CFG = {
     plugins: [
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         warnings: false
-        //     }
-        // }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
         // Setting DefinePlugin affects React library size!
         // DefinePlugin replaces content "as is" so we need some extra quotes
         // for the generated code to make sense
