@@ -34,6 +34,10 @@ var BASE_CFG = {
                 test:   /\.less$/,
                 loader: "style-loader!css-loader!postcss-loader!less-loader"
             },
+            {
+                include: /\.json$/,
+                loaders: ["json-loader"]
+            }
         ]
     },
     postcss: [autoprefixer({ browsers: ['last 2 versions', 'ie 8', 'ie 9'] })]

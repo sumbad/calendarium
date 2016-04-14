@@ -1,6 +1,6 @@
 {
   "name": "calendarium",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React datetime picker",
   "main": "webpack.config.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.9.0",
+    "json-loader": "^0.5.4",
     "less": "^2.6.0",
     "less-loader": "^2.2.2",
     "lodash": "^4.5.1",
