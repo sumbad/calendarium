@@ -10,8 +10,9 @@ var packageJson = require('../package.json');
 
 
 interface IDatePickerProps {
-    //view: any,
+    id: string;
     selected?: Date;
+    //view: any,
     //onSelect: (day: number) => void;
     //minDate: number,
     //maxDate: number,
@@ -19,11 +20,11 @@ interface IDatePickerProps {
 }
 
 interface IDatePickerState {
-    id?: string;
+    //id?: string;
     view?: Date,                         // отображаемая дата в текстовом поле
     selected?: Date,                     // выбранная дата в календаре
     minDate?: number,
-    maxDate?: number,
+    maxDate?: number
 }
 
 class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
@@ -35,7 +36,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
         var def = this.props.selected || new Date();
 
         this.state = {
-            id: this.getUniqueIdentifier(),
+            //id: this.getUniqueIdentifier(),
             view: DateUtilities.clone(def),
             selected: DateUtilities.clone(def),
             minDate: null,
@@ -61,9 +62,9 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
 
     render() {
         return (
-            <div id={this.state.id} className="ardp-date-picker">
-                <input ref="trigger" type="text" className={"date-picker-trigger-" + this.state.id} readOnly={true} value={DateUtilities.toString(this.state.selected) } onClick={this.show}/>
-                <Calendarium onClick={this.handleCalendariumClick.bind(this) } ref="calendar" id={"calendarium-" + this.state.id} view={this.state.view} selected={this.state.selected} onSelect={this.onSelect} minDate={this.state.minDate} maxDate={this.state.maxDate}/>
+            <div id={this.props.id} className="ardp-date-picker">
+                <input ref="trigger" type="text" className={"date-picker-trigger-" + this.props.id} readOnly={true} value={DateUtilities.toString(this.state.selected) } onClick={this.show}/>
+                <Calendarium onClick={this.handleCalendariumClick.bind(this) } ref="calendar" id={"calendarium-" + this.props.id} view={this.state.view} selected={this.state.selected} onSelect={this.onSelect} minDate={this.state.minDate} maxDate={this.state.maxDate}/>
             </div>
         );
     }
@@ -83,7 +84,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
 
     hideOnDocumentClick(e) {
         let parent = e.target;
-        let idDatePicker = this.state.id;
+        let idDatePicker = this.props.id;
         while (parent) {
             if (parent.id && parent.id === idDatePicker) {
                 return;
@@ -96,14 +97,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
 
 
 
-    getUniqueIdentifier() {
-        function s4() {
-            return Math.floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-    }
+
 
 
     setMinDate(date) {
@@ -156,4 +150,19 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
 
 
 
-ReactDOM.render(<DatePicker />, document.getElementById('datepicker'));
+ReactDOM.render(<DatePicker id={getUniqueIdentifier()}/>, document.getElementById('datepicker'));
+
+
+/**
+ * Get an unique identifier for datepicker, we can use any different id
+ * 
+ * @return string
+ */
+function getUniqueIdentifier() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+};
