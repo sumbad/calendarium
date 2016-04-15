@@ -1,25 +1,28 @@
 @calendarium__background: #307E96;
 @calendarium__color: #FFFFFF;
 @calendarium__width: 280px;
-@calendarium__height: 195px;
+@calendarium__height: 215px;
 
 
 @main-panel__background: @calendarium__background;
 @main-panel__color: #FFFFFF;
 @main-panel__width: 90px;
-@main-panel__height: 160px;
-
-
-@control-panel__background: @calendarium__background;
-@control-panel__color: #307E96;
-@control-panel__width: 280px;
-@control-panel__height: 35px;
+@main-panel__height: 180px;
 
 
 @date-panel__background: #FFFFFF;
 @date-panel__color: #727070;
-@date-panel__width: 190px;
-@date-panel__height: 160px;
+@date-panel__width: @calendarium__width - @main-panel__width;
+@date-panel__height: @main-panel__height;
+
+
+@control-panel__background: @calendarium__background;
+@control-panel__color: #307E96;
+@control-panel__width: @calendarium__width;
+@control-panel__height: @calendarium__height - @main-panel__height;
+
+
+
 
 
 
@@ -188,13 +191,13 @@
                 left: 0;
                 }
                 
-                &.other {
-                    left: 250px;
+                // &.other {
+                //     left: 250px;
                     
-                    &.right {
-                        left: -250px;
-                    }
-                }
+                //     &.right {
+                //         left: -250px;
+                //     }
+                //}
                 
                 // &.sliding {
                 //     transition: transform 250ms ease;

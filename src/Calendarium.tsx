@@ -28,7 +28,6 @@ export class Calendarium extends React.Component<ICalendariumProps, ICalendarium
 
     constructor(props: ICalendariumProps) {
         super(props);
-        // this.onMove = this.onMove.bind(this);
     }
 
 
@@ -47,7 +46,6 @@ export class Calendarium extends React.Component<ICalendariumProps, ICalendarium
                 <div className="date-panel">
                     <Weeks ref="weeks"
                         selectedDate={this.props.selectedDate}
-                        onTransitionEnd={this.onTransitionEnd.bind(this)}
                         onSelect={this.props.onSelect}
                         minDate={this.props.minDate}
                         maxDate={this.props.maxDate} />
@@ -56,21 +54,4 @@ export class Calendarium extends React.Component<ICalendariumProps, ICalendarium
             </div>
         );
     }
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// ADDITIONAL METHODS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // onMove(view, isForward) {
-    //     var weeks: any = this.refs["weeks"];
-    //     weeks.moveTo(view, isForward);
-    // }
-
-
-    onTransitionEnd() {
-        var monthHeader: any = this.refs["monthHeader"];
-        monthHeader.enable()
-    }
-
 }

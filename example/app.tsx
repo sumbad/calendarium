@@ -68,16 +68,17 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
                     selectedDate={this.state.selectedDate}
                     visible = {this.state.visible}
                     position = {this.state.position}
-                    onSelect={this.onSelect.bind(this)} />
+                    onSelect={this.onSelect.bind(this) } />
             </div>
         );
     }
 
 
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// ADDITIONAL METHODS ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**********************************************************************************************************
+     * ADDITIONAL METHODS
+     * 
+     */
 
 
     hideOnDocumentClick(e) {
