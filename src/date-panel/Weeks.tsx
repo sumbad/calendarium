@@ -7,18 +7,18 @@ import {Week} from './Week';
 
 interface IWeeksProps {
     ref: string;
-    view: any;
-    selected: boolean;
+    // view: any;
+    selectedDate: Date;
     onTransitionEnd: () => any;
-    minDate: number;
-    maxDate: number;
+    minDate: Date;
+    maxDate: Date;
     onSelect: (day: number) => void;
 }
 
 interface IWeeksState {
-    view?: Date;
-    current?: any;
-    other?: any;
+    // view?: Date;
+    current?: Date;
+    other?: Date;
     sliding: any;
 }
 
@@ -30,8 +30,8 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
 
         // set initial state
         this.state = {
-            view: DateUtilities.clone(this.props.view),
-            other: DateUtilities.clone(this.props.view),
+            current: DateUtilities.clone(this.props.selectedDate),
+            other: DateUtilities.clone(this.props.selectedDate),
             sliding: null
         };
 
@@ -45,7 +45,7 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
     }
 
     render() {
-        let current = this.renderWeeks(this.state.view);
+        let current = this.renderWeeks(this.state.current);
         let other = this.renderWeeks(this.state.other);
 
         return (
@@ -80,7 +80,7 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
     onTransitionEnd() {
         this.setState({
             sliding: null,
-            view: DateUtilities.clone(this.state.other)
+            current: DateUtilities.clone(this.state.other)
         });
 
         this.props.onTransitionEnd();
@@ -123,7 +123,7 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
                 key={i}
                 start={s}
                 month={month}
-                selected={this.props.selected}
+                selectedDate={this.props.selectedDate}
                 onSelect={this.props.onSelect}
                 minDate={this.props.minDate}
                 maxDate={this.props.maxDate}
@@ -131,9 +131,5 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
         });
 
         return WeeksElement;
-
-        // return starts.map(function(s, i) {
-        //     return React.createElement(Week, { key: i, start: s, month: month, selected: this.props.selected, onSelect: this.props.onSelect, minDate: this.props.minDate, maxDate: this.props.maxDate });
-        // }.bind(this));
     }
 }

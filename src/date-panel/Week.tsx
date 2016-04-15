@@ -9,9 +9,9 @@ export interface IWeekProps {
     key: number;
     start: Date;
     month: number;
-    selected: boolean;
-    minDate: number;
-    maxDate: number;
+    selectedDate: Date;
+    minDate: Date;
+    maxDate: Date;
 
     onSelect(day: number): any;
 }
@@ -53,7 +53,7 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
             className += " today";
         if (this.props.month !== day.getMonth())
             className += " other-month";
-        if (this.props.selected && DateUtilities.isSameDay(day, this.props.selected))
+        if (this.props.selectedDate && DateUtilities.isSameDay(day, this.props.selectedDate))
             className += " selected";
         if (this.isDisabled(day))
             className += " disabled";

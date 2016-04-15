@@ -11,20 +11,18 @@ var packageJson = require('../package.json');
 
 interface IDatePickerProps {
     id: string;
-    selected?: Date;
-    //view: any,
-    //onSelect: (day: number) => void;
-    //minDate: number,
-    //maxDate: number,
-    //visible: boolean
+    selectedDate?: Date;
 }
 
 interface IDatePickerState {
-    //id?: string;
-    view?: Date,                         // отображаемая дата в текстовом поле
-    selected?: Date,                     // выбранная дата в календаре
-    minDate?: number,
-    maxDate?: number
+    selectedDate?: Date;
+    minDate?: number;
+    maxDate?: number;
+    visible?: boolean;
+    position?: {
+        top: number,
+        left: number
+    }
 }
 
 class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
@@ -33,19 +31,15 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
     constructor(props: IDatePickerProps) {
         super(props);
 
-        var def = this.props.selected || new Date();
+        var date = this.props.selectedDate || new Date();
 
         this.state = {
-            //id: this.getUniqueIdentifier(),
-            view: DateUtilities.clone(def),
-            selected: DateUtilities.clone(def),
+            selectedDate: date,
             minDate: null,
-            maxDate: null
+            maxDate: null,
+            visible: false
         };
 
-        this.onSelect = this.onSelect.bind(this);
-        this.show = this.show.bind(this);
-        this.hide = this.hide.bind(this);
         this.hideOnDocumentClick = this.hideOnDocumentClick.bind(this);
     }
 
@@ -63,8 +57,18 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
     render() {
         return (
             <div id={this.props.id} className="ardp-date-picker">
-                <input ref="trigger" type="text" className={"date-picker-trigger-" + this.props.id} readOnly={true} value={DateUtilities.toString(this.state.selected) } onClick={this.show}/>
-                <Calendarium onClick={this.handleCalendariumClick.bind(this) } ref="calendar" id={"calendarium-" + this.props.id} view={this.state.view} selected={this.state.selected} onSelect={this.onSelect} minDate={this.state.minDate} maxDate={this.state.maxDate}/>
+                <input ref="trigger"
+                    type="text"
+                    className={"date-picker-trigger-" + this.props.id}
+                    readOnly={true}
+                    value={DateUtilities.toString(this.state.selectedDate) }
+                    onClick={this.show.bind(this) }/>
+                <Calendarium ref="calendar"
+                    id={"calendarium-" + this.props.id}
+                    selectedDate={this.state.selectedDate}
+                    visible = {this.state.visible}
+                    position = {this.state.position}
+                    onSelect={this.onSelect.bind(this)} />
             </div>
         );
     }
@@ -76,12 +80,6 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    handleCalendariumClick(event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
-
-
     hideOnDocumentClick(e) {
         let parent = e.target;
         let idDatePicker = this.props.id;
@@ -91,66 +89,40 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
             }
             parent = parent.parentNode;
         }
-        // if (e.target.className !== "date-picker-trigger-" + this.state.id && !this.parentsHaveClassName(e.target, "ardp-calendarium-" + this.state.id))
-        this.hide();
+
+        this.state.visible = false;
+        this.setState(this.state);
     }
 
-
-
-
-
-
-    setMinDate(date) {
-        this.setState({ minDate: date });
-    }
-
-    setMaxDate(date) {
-        this.setState({ maxDate: date });
-    }
 
     onSelect(day) {
-        this.setState({ selected: day });
-        this.hide();
-
+        this.setState({ selectedDate: day });
         //if (this.props.onSelect)
         //    this.props.onSelect(day);
     }
 
-    show() {
+    getPosition() {
         var trigger = ReactDOM.findDOMNode(this.refs["trigger"]);
         var rect = trigger.getBoundingClientRect();
         var isTopHalf = rect.top > window.innerHeight / 2;
         var calendarHeight = 203;
-
-        var calendar: any = this.refs["calendar"];
-        calendar.show({
+        return {
             top: isTopHalf ? (rect.top + window.scrollY - calendarHeight - 3) : (rect.top + trigger.clientHeight + window.scrollY + 3),
             left: rect.left
-        });
+        };
     }
 
-    hide() {
-        var calendar: any = this.refs["calendar"];
-        calendar.hide();
+    show() {
+        this.state.position = this.getPosition();
+        this.state.visible = true;
+        this.setState(this.state);
     }
 
-
-    // parentsHaveClassName(element, className) {
-    //     var parent = element;
-    //     while (parent) {
-    //         if (parent.className && parent.className.indexOf(className) > -1)
-    //             return true;
-
-    //         parent = parent.parentNode;
-    //     }
-
-    //     return false;
-    // }
 }
 
 
 
-ReactDOM.render(<DatePicker id={getUniqueIdentifier()}/>, document.getElementById('datepicker'));
+ReactDOM.render(<DatePicker id={getUniqueIdentifier() }/>, document.getElementById('datepicker'));
 
 
 /**
