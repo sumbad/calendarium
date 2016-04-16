@@ -26,17 +26,39 @@ export class DateUtilities {
     }
 
     /**
-    * Convert day of date to String
+    * Convert day of the date to String
     */
     public static toDayOfMonthString(date: Date) {
         return DateUtilities.pad(date.getDate().toString(), 0);
     }
 
-    public static toMonthAndYearString(date) {
-        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        return months[date.getMonth()] + " " + date.getFullYear();
-    }
 
+    /**
+     * Get month of the date
+     */
+    public static toMonthString(date) {
+        // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+        return months[date.getMonth()];
+    }
+    
+    
+    // /**
+    //  * Get year of the date
+    //  */
+    // public static toYearString(date) {
+    //     return date.getFullYear();
+    // }
+    
+    
+    // /**
+    //  * Get hour of the date
+    //  */
+    // public static toHoursString(date:Date) {
+    //     return date.getHours();
+    // }
+
+        
 
     /**
      * Get day of the week at number the "dayOfWeek", start from the "date" an dgo to the last

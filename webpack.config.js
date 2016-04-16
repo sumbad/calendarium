@@ -31,7 +31,7 @@ var BASE_CFG = {
                 loader: 'file?name=[path][name].[ext]',
             },
             {
-                test:   /\.less$/,
+                test: /\.less$/,
                 loader: "style-loader!css-loader!postcss-loader!less-loader"
             },
             {
@@ -59,7 +59,7 @@ var FRONTEND_CFG = _.merge(BASE_CFG, {
     plugins: [
         // Make html file from template
         new HtmlWebpackPlugin({
-            template: path.join(PATHS.example,'index.html'),
+            template: path.join(PATHS.example, 'index.html'),
             filename: 'index.html',
             title: 'Calendarium',
             inject: false
@@ -76,7 +76,8 @@ var DEV_CFG = {
         historyApiFallback: true,
         hot: true,
         inline: true,
-        progress: true,
+        /* show progress bar while processing */
+        // progress: true,
         // display only errors to reduce the amount of output
         stats: 'errors-only',
         // parse host and port from env so this is easy
