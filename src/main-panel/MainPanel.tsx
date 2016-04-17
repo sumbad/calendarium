@@ -1,12 +1,19 @@
+/**__________________________________________________________________________________________________________________
+ * | MainPanel is a React component.
+ * | Uses inside Calendarium to manage its.
+ * |
+ * @author sumbad
+ */
+
 import * as React from 'react';
 
 import {DateUtilities} from '../DateUtilities';
-
+import {DatePanel} from '../date-panel/DatePanel'
 
 
 interface IMainPanelProps {
     selectedDate: Date;
-    handleClick: (string) => void;
+    handleClick: (DatePanel) => void;
 }
 
 interface IMainPanelState {
@@ -29,13 +36,13 @@ export class MainPanel extends React.Component<IMainPanelProps, IMainPanelState>
 
         return (
             <div className="main-panel">
-                <label onClick={this.handleClickDay.bind(this)} className="chosen-day selected">{day}</label>
-                <label onClick={this.handleClickMonth.bind(this)} className="chosen-month">{month}</label>
-                <label onClick={this.handleClickYear.bind(this)} className="chosen-year">{year}</label>
+                <label onClick={this.handleClickDay.bind(this) } className="chosen-day selected">{day}</label>
+                <label onClick={this.handleClickMonth.bind(this) } className="chosen-month">{month}</label>
+                <label onClick={this.handleClickYear.bind(this) } className="chosen-year">{year}</label>
                 <label className="chosen-time">
                     <div className="chosen-time__hour">
                         <div className="arrow-up"></div>
-                        <span>{hours}</span>
+                        <span onClick={this.handleClickHours.bind(this) }>{hours}</span>
                         <div className="arrow-down"></div>
                     </div>
                     <div className="chosen-time__colon">
@@ -43,7 +50,7 @@ export class MainPanel extends React.Component<IMainPanelProps, IMainPanelState>
                     </div>
                     <div className="chosen-time__minute">
                         <div className="arrow-up"></div>
-                        <span>{minutes}</span>
+                        <span onClick={this.handleClickMinutes.bind(this) }>{minutes}</span>
                         <div className="arrow-down"></div>
                     </div>
                 </label>
@@ -52,21 +59,37 @@ export class MainPanel extends React.Component<IMainPanelProps, IMainPanelState>
     }
 
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ADDITIONAL METHODS
+    //
 
-    /** ADDITIONAL METHODS_________________________________________________________________________________________
-     * 
-     */
-    
-    handleClickMonth() {
-        this.props.handleClick("months");
-    }
-    
+
     handleClickDay() {
-        this.props.handleClick("weeks");
-    }
-    
-    handleClickYear() {
-        this.props.handleClick("years");
+        this.props.handleClick(DatePanel.Weeks);
     }
 
+
+    handleClickMonth() {
+        this.props.handleClick(DatePanel.Months);
+    }
+
+
+    handleClickYear() {
+        this.props.handleClick(DatePanel.Years);
+    }
+
+
+    handleClickHours() {
+        this.props.handleClick(DatePanel.Hours);
+    }
+
+
+    handleClickMinutes() {
+        this.props.handleClick(DatePanel.Minutes);
+    }
+
+
+    //
+    // ADDITIONAL METHODS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

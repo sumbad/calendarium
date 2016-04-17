@@ -1,5 +1,5 @@
 import React = require('react');
-import {DateUtilities} from '../DateUtilities';
+import {DateUtilities} from '../../DateUtilities';
 
 
 interface IWeekProps {
@@ -9,7 +9,7 @@ interface IWeekProps {
     selectedDate: Date;
     minDate: Date;
     maxDate: Date;
-    onSelect(day: number): any;
+    onSelect: (date:Date) => void;
 }
 
 interface IWeekState { }
@@ -43,10 +43,7 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
     }
 
 
-    /**********************************************************************************************************
-     * ADDITIONAL METHODS
-     * 
-     */
+    /*** ADDITIONAL METHODS **************************************************************************************/
 
 
     /** 

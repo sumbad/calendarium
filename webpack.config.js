@@ -53,8 +53,8 @@ var FRONTEND_CFG = _.merge(BASE_CFG, {
     },
     output: {
         path: __dirname,
-        filename: '[name].js'
-        // publicPath: '/'
+        filename: '[name].js',
+        publicPath: '/'
     },
     plugins: [
         // Make html file from template

@@ -1,4 +1,22 @@
+declare var require;
+
 export class DateUtilities {
+
+    public static locale = require('./locale/en.json');;
+
+    public static loadLocale(locale): void {
+        this.locale = locale;
+        //this.locale = require("i18n!./locale/ru.json");
+        // this.locale = require('bundle?name=[path][name].[ext]!./locale/' + name + '.json');
+        // require.ensure([], function(require){
+        //     this.locale = require('./locale/' + name + '.json');
+        // });
+
+        // const req = require.context('bundle?lazy&name=/dist/locale/lll!./locale/!./pages',
+        //     true, // Load files recursively. Pass false to skip recursion.
+        //     /^\.\/.*\.json$/ // Match files ending with .json.
+        // );
+    }
 
     /**
      * Add zero before value if value.length < length
@@ -38,27 +56,10 @@ export class DateUtilities {
      */
     public static toMonthString(date) {
         // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
-        return months[date.getMonth()];
+        //const months = this.locale.months;//["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+        return this.locale.months[date.getMonth()];
     }
-    
-    
-    // /**
-    //  * Get year of the date
-    //  */
-    // public static toYearString(date) {
-    //     return date.getFullYear();
-    // }
-    
-    
-    // /**
-    //  * Get hour of the date
-    //  */
-    // public static toHoursString(date:Date) {
-    //     return date.getHours();
-    // }
 
-        
 
     /**
      * Get day of the week at number the "dayOfWeek", start from the "date" an dgo to the last

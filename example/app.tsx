@@ -6,7 +6,8 @@ import * as ReactDOM from 'react-dom';
 import {Calendarium} from '../src/Calendarium';
 import {DateUtilities} from '../src/DateUtilities';
 
-var packageJson = require('../package.json');
+const packageJson = require('../package.json');
+const locale = require('../src/locale/ru.json');
 
 
 interface IDatePickerProps {
@@ -41,6 +42,8 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
         };
 
         this.hideOnDocumentClick = this.hideOnDocumentClick.bind(this);
+        
+        DateUtilities.loadLocale(locale);
     }
 
 
@@ -96,8 +99,8 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
     }
 
 
-    onSelect(day) {
-        this.setState({ selectedDate: day });
+    onSelect(date:Date) {
+        this.setState({ selectedDate: date });
         //if (this.props.onSelect)
         //    this.props.onSelect(day);
     }
