@@ -64,7 +64,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
                     type="text"
                     className={"date-picker-trigger-" + this.props.id}
                     readOnly={true}
-                    value={DateUtilities.toString(this.state.selectedDate) }
+                    value={DateUtilities.formatDate(this.state.selectedDate) }
                     onClick={this.show.bind(this) }/>
                 <Calendarium ref="calendar"
                     id={"calendarium-" + this.props.id}

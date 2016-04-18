@@ -1,3 +1,5 @@
 {
+    "name": "en",
+    "format": "YYYY-MM-dd HH:mm",
     "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 }

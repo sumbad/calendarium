@@ -39,9 +39,21 @@ export class DateUtilities {
     }
 
 
-    public static toString(date: Date) {
-        return date.getFullYear() + "-" + DateUtilities.pad((date.getMonth() + 1).toString(), 2) + "-" + DateUtilities.pad(date.getDate().toString(), 2);
+    /**
+     * Format date
+     */
+    public static formatDate(date: Date) {       
+        let format = this.locale.format;
+        
+        format = format.replace(/dd/g, DateUtilities.pad(date.getDate().toString(), 2));
+        format = format.replace("MM", DateUtilities.pad((date.getMonth() + 1).toString(), 2));
+        format = format.replace("YYYY", date.getFullYear().toString());
+        format = format.replace("HH", DateUtilities.pad(date.getHours().toString(), 2));
+        format = format.replace("mm", DateUtilities.pad(date.getMinutes().toString(), 2));
+        
+        return format;//date.getFullYear() + "-" + DateUtilities.pad((date.getMonth() + 1).toString(), 2) + "-" + DateUtilities.pad(date.getDate().toString(), 2);
     }
+    
 
     /**
     * Convert day of the date to String
@@ -55,8 +67,6 @@ export class DateUtilities {
      * Get month of the date
      */
     public static toMonthString(date) {
-        // const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        //const months = this.locale.months;//["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
         return this.locale.months[date.getMonth()];
     }
 

@@ -14,6 +14,7 @@ import {DatePanel} from '../date-panel/DatePanel'
 interface IMainPanelProps {
     selectedDate: Date;
     handleClick: (DatePanel) => void;
+    onSelect: (date: Date) => void;
 }
 
 interface IMainPanelState {
@@ -41,17 +42,17 @@ export class MainPanel extends React.Component<IMainPanelProps, IMainPanelState>
                 <label onClick={this.handleClickYear.bind(this) } className="chosen-year">{year}</label>
                 <label className="chosen-time">
                     <div className="chosen-time__hour">
-                        <div className="arrow-up"></div>
+                        <div onClick={this.handleClickHoursArrowUp.bind(this) } className="arrow-up"></div>
                         <span onClick={this.handleClickHours.bind(this) }>{hours}</span>
-                        <div className="arrow-down"></div>
+                        <div onClick={this.handleClickHoursArrowDown.bind(this) } className="arrow-down"></div>
                     </div>
                     <div className="chosen-time__colon">
                         <span>: </span>
                     </div>
                     <div className="chosen-time__minute">
-                        <div className="arrow-up"></div>
+                        <div onClick={this.handleClickMinutesArrowUp.bind(this) } className="arrow-up"></div>
                         <span onClick={this.handleClickMinutes.bind(this) }>{minutes}</span>
-                        <div className="arrow-down"></div>
+                        <div onClick={this.handleClickMinutesArrowDown.bind(this) } className="arrow-down"></div>
                     </div>
                 </label>
             </div>
@@ -86,6 +87,34 @@ export class MainPanel extends React.Component<IMainPanelProps, IMainPanelState>
 
     handleClickMinutes() {
         this.props.handleClick(DatePanel.Minutes);
+    }
+
+
+    handleClickHoursArrowUp() {
+        let date = this.props.selectedDate;
+        date.setHours(this.props.selectedDate.getHours() + 1);
+        this.props.onSelect(date);
+    }
+
+
+    handleClickHoursArrowDown() {
+        let date = this.props.selectedDate;
+        date.setHours(this.props.selectedDate.getHours() - 1);
+        this.props.onSelect(date);
+    }
+    
+    
+    handleClickMinutesArrowUp() {
+        let date = this.props.selectedDate;
+        date.setMinutes(this.props.selectedDate.getMinutes() + 1);
+        this.props.onSelect(date);
+    }
+
+
+    handleClickMinutesArrowDown() {
+        let date = this.props.selectedDate;
+        date.setMinutes(this.props.selectedDate.getMinutes() - 1);
+        this.props.onSelect(date);
     }
 
 

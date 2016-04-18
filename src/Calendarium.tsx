@@ -105,7 +105,7 @@ export class Calendarium extends React.Component<ICalendariumProps, ICalendarium
 
         return (
             <div ref="calendarium" className={"ardp-calendarium-" + this.props.id + " calendarium" + (this.props.visible ? " calendarium-show" : " calendarium-hide") } style={style}>
-                <MainPanel selectedDate={this.props.selectedDate} handleClick={this.handleClick.bind(this) }/>
+                <MainPanel onSelect={this.props.onSelect} selectedDate={this.props.selectedDate} handleClick={this.handleClick.bind(this) }/>
                 <div className="date-panel">
                     {datePanel}
                 </div>
