@@ -74,8 +74,8 @@ export class DateUtilities {
     /**
      * Get day of the week at number the "dayOfWeek", start from the "date" an dgo to the last
      */
-    public static moveToDayOfWeek(date: Date, dayOfWeek: number, locale: string) {
-        while (DateUtilities.getDayOfWeekWithLocal(date, locale) !== dayOfWeek)
+    public static moveToDayOfWeek(date: Date, dayOfWeek: number) {
+        while (DateUtilities.getDayOfWeekWithLocal(date) !== dayOfWeek)
             date.setDate(date.getDate() - 1);
         return date;
     }
@@ -84,10 +84,10 @@ export class DateUtilities {
     /**
      * Get day of the week with "locale"
      */
-    public static getDayOfWeekWithLocal(date: Date, locale: string): number {
+    public static getDayOfWeekWithLocal(date: Date): number {
         // date.getDay() returns number of day of a week starting from Sunday – 0, Monday – 1, Tuesday – 2
         let currentDayOfWeek = date.getDay();
-        if (locale === 'ru') {
+        if (this.locale.name === 'ru') {
             switch (currentDayOfWeek) {
                 case 0: currentDayOfWeek = 6; break;
                 default: currentDayOfWeek = currentDayOfWeek - 1; break;

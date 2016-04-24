@@ -18,6 +18,7 @@ interface ICalendariumProps {
     selectedDate: Date;
     visible: boolean;
     onSelect: (date: Date) => void;
+    onClose: () => void;
     minDate?: Date;
     maxDate?: Date;
     position: {
@@ -40,8 +41,6 @@ export class Calendarium extends React.Component<ICalendariumProps, ICalendarium
         this.state = {
             datePanelSelected: DatePanel.Weeks
         }
-
-        //this.getWeeks = this.getWeeks.bind(this);
     }
 
 
@@ -63,7 +62,7 @@ export class Calendarium extends React.Component<ICalendariumProps, ICalendarium
                         onSelect={this.props.onSelect}
                         minDate={this.props.minDate}
                         maxDate={this.props.maxDate} />
-                    );
+                );
                 break;
             case DatePanel.Months:
                 datePanel = (
@@ -109,7 +108,7 @@ export class Calendarium extends React.Component<ICalendariumProps, ICalendarium
                 <div className="date-panel">
                     {datePanel}
                 </div>
-                <ControlPanel/>
+                <ControlPanel onSelect={this.props.onSelect} onClose={this.props.onClose}/>
             </div>
         );
     }

@@ -42,7 +42,7 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
         };
 
         this.hideOnDocumentClick = this.hideOnDocumentClick.bind(this);
-        
+
         DateUtilities.loadLocale(locale);
     }
 
@@ -71,17 +71,17 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
                     selectedDate={this.state.selectedDate}
                     visible = {this.state.visible}
                     position = {this.state.position}
-                    onSelect={this.onSelect.bind(this) } />
+                    onSelect={this.onSelect.bind(this) }
+                    onClose={this.onClose.bind(this) }/>
             </div>
         );
     }
 
 
 
-    /**********************************************************************************************************
-     * ADDITIONAL METHODS
-     * 
-     */
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ADDITIONAL METHODS
+    //
 
 
     hideOnDocumentClick(e) {
@@ -99,10 +99,13 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
     }
 
 
-    onSelect(date:Date) {
+    onClose() {
+        this.setState({ visible: false });
+    }
+
+
+    onSelect(date: Date) {
         this.setState({ selectedDate: date });
-        //if (this.props.onSelect)
-        //    this.props.onSelect(day);
     }
 
     getPosition() {
@@ -122,7 +125,12 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
         this.setState(this.state);
     }
 
+
+    //
+    // ADDITIONAL METHODS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
+
 
 
 

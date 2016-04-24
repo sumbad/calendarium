@@ -25,17 +25,15 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
 
     render() {
         let weeks = this.renderWeeks(DateUtilities.clone(this.props.selectedDate));
+        
+        let weekHeader = DateUtilities.locale.week.map(w=>{
+            return (<span key={w.name} className={w.class}>{w.name}</span>);
+        });
 
         return (
             <div className="weeks">
                 <div className="week-header">
-                    <span>Пн</span>
-                    <span>Вт</span>
-                    <span>Ср</span>
-                    <span>Чт</span>
-                    <span>Пт</span>
-                    <span className="holiday">Сб</span>
-                    <span className="holiday">Вс</span>
+                    {weekHeader}
                 </div>
                 <div className="week-body">
                     <div  ref="current" className={"current"}>
@@ -74,6 +72,7 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
 
         return WeeksElement;
     }
+    
 
     /**
      * Get weeks for a view
@@ -81,7 +80,7 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
     getWeekStartDates(date: Date) {
         // set a first day of the month
         date.setDate(1);
-        date = DateUtilities.moveToDayOfWeek(DateUtilities.clone(date), 0, "ru");
+        date = DateUtilities.moveToDayOfWeek(DateUtilities.clone(date), 0);
 
         let current = DateUtilities.clone(date);
         current.setDate(current.getDate() + 7);

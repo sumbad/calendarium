@@ -1,5 +1,29 @@
 {
     "name": "en",
     "format": "YYYY-MM-dd HH:mm",
-    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    "close": "Close",
+    "now": "Сurrent",
+    "months": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+    ],
+    "week": [
+        {"name":"Su", "class":"weekend"},
+        {"name":"Mo", "class":"weekday"},
+        {"name":"Tu", "class":"weekday"},
+        {"name":"We", "class":"weekday"},
+        {"name":"Th", "class":"weekday"},
+        {"name":"Fr", "class":"weekday"},
+        {"name":"Sa", "class":"weekend"}
+    ]
 }
