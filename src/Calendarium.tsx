@@ -1,4 +1,5 @@
-import './calendarium.less';
+import './calendariumStyle';
+//require('calendariumStyle')
 
 import * as React from 'react';
 

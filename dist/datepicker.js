@@ -54,61 +54,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(22);
-
-
-
-	var React = __webpack_require__(6);
-	var ReactDOM = __webpack_require__(19);
-
-	var DatePicker = __webpack_require__(18).DatePicker;
-
-	//import {DatePicker} from '../src/DatePicker';
-
-	//ReactDOM.render(<DatePicker id={getUniqueIdentifier() }/>, document.getElementById('datepicker'));
-
-	var comp = React.createElement(DatePicker, { id: getUniqueIdentifier() });
-
-	ReactDOM.render(
-	    comp, 
-	    document.getElementById('datepicker')
-	);
-
-	/**
-	 * Get an unique identifier for datepicker, we can use any different id
-	 * 
-	 * @return string
-	 */
-	function getUniqueIdentifier() {
-	    function s4() {
-	        return Math.floor((1 + Math.random()) * 0x10000)
-	            .toString(16)
-	            .substring(1);
-	    }
-	    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-	};
-
-
-
-
-
-
-	// var Hello = React.createClass({
-	//   displayName: 'Hello',
-	//   render: function() {
-	//     return React.createElement("div", null, "Hello ", this.props.name);
-	//   }
-	// });
-
-
-	// ReactDOM.render(
-	//   React.createElement(Hello, {name: "World"}),
-	//   document.getElementById('datepicker')
-	// );
-
-
-
-
+	module.exports = __webpack_require__(18);
 
 
 /***/ },
@@ -1329,46 +1275,6 @@ return /******/ (function(modules) { // webpackBootstrap
 			}
 		]
 	};
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(23);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(5)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./../node_modules/less-loader/index.js!./app.less", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./../node_modules/postcss-loader/index.js!./../node_modules/less-loader/index.js!./app.less");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(4)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "", ""]);
-
-	// exports
-
 
 /***/ }
 /******/ ])

@@ -1,13 +1,11 @@
-import './app.less';
-
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import {Calendarium} from '../src/Calendarium';
-import {DateUtilities} from '../src/DateUtilities';
+import {Calendarium} from './Calendarium';
+import {DateUtilities} from './DateUtilities';
 
 const packageJson = require('../package.json');
-const locale = require('../src/locale/ru.json');
+const locale = require('./locale/ru.json');
 
 
 interface IDatePickerProps {
@@ -26,7 +24,7 @@ interface IDatePickerState {
     }
 }
 
-class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
+export class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
     displayName: 'DatePicker';
 
     constructor(props: IDatePickerProps) {
@@ -130,23 +128,3 @@ class DatePicker extends React.Component<IDatePickerProps, IDatePickerState>{
     // ADDITIONAL METHODS
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
-
-
-
-
-ReactDOM.render(<DatePicker id={getUniqueIdentifier() }/>, document.getElementById('datepicker'));
-
-
-/**
- * Get an unique identifier for datepicker, we can use any different id
- * 
- * @return string
- */
-function getUniqueIdentifier() {
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-};

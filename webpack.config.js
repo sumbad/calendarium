@@ -17,18 +17,22 @@ const PATHS = {
 
 var BASE_CFG = {
     resolve: {
-        extensions: ['', '.js', '.ts', '.jsx', '.tsx', '.json'],
+        extensions: ['', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css'],
     },
     module: {
         loaders: [
             {
                 test: /\.ts(x?)$/,
                 loader: 'ts-loader',
-                include: [PATHS.src, PATHS.example]
+                include: [PATHS.src]
             },
             {
                 test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'file?name=[path][name].[ext]',
+            },
+            {
+                test: /\.css$/,
+                loader: "style-loader!css-loader"
             },
             {
                 test: /\.less$/,
@@ -48,13 +52,16 @@ var FRONTEND_CFG = _.merge(BASE_CFG, {
     //context: PATHS.src,
     entry: {
         'dist/calendarium': [path.join(PATHS.src, 'Calendarium.tsx')],// './index.js',
-        'example/bundle': path.join(PATHS.example, 'app.tsx')
+        'dist/datepicker': [path.join(PATHS.src, 'Datepicker.tsx')],
+        'example/bundle': path.join(PATHS.example, 'app.js')
         // index: path.join(PATHS.src, 'index.tsx'),
     },
     output: {
         path: __dirname,
         filename: '[name].js',
-        publicPath: '/'
+        library: 'Calendarium',
+        libraryTarget: 'umd'
+        // publicPath: '/'
     },
     plugins: [
         // Make html file from template
@@ -66,7 +73,19 @@ var FRONTEND_CFG = _.merge(BASE_CFG, {
         })
         // Basic Usage
         //new HtmlWebpackPlugin()
-    ]
+    ],
+    externals: {
+        'react-dom': {
+            root: 'ReactDOM',
+            commonjs: 'react-dom',
+            commonjs2: 'react-dom'
+        },
+        react: {
+            root: 'React',
+            commonjs: 'react',
+            commonjs2: 'react'
+        }
+    }
 });
 
 
