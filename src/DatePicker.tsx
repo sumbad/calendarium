@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import {Calendarium} from './Calendarium';
+import {Calendar} from './calendar/Calendar';
 import {DateUtilities} from './DateUtilities';
 
 const packageJson = require('../package.json');
@@ -64,8 +64,8 @@ export class DatePicker extends React.Component<IDatePickerProps, IDatePickerSta
                     readOnly={true}
                     value={DateUtilities.formatDate(this.state.selectedDate) }
                     onClick={this.show.bind(this) }/>
-                <Calendarium ref="calendar"
-                    id={"calendarium-" + this.props.id}
+                <Calendar ref="calendar"
+                    id={"calendar-" + this.props.id}
                     selectedDate={this.state.selectedDate}
                     visible = {this.state.visible}
                     position = {this.state.position}

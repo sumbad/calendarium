@@ -50,12 +50,6 @@ var BASE_CFG = {
 
 var FRONTEND_CFG = _.merge(BASE_CFG, {
     //context: PATHS.src,
-    entry: {
-        'dist/calendarium': [path.join(PATHS.src, 'Calendarium.tsx')],// './index.js',
-        'dist/datepicker': [path.join(PATHS.src, 'Datepicker.tsx')],
-        'example/bundle': path.join(PATHS.example, 'app.js')
-        // index: path.join(PATHS.src, 'index.tsx'),
-    },
     output: {
         path: __dirname,
         filename: '[name].js',
@@ -73,23 +67,15 @@ var FRONTEND_CFG = _.merge(BASE_CFG, {
         })
         // Basic Usage
         //new HtmlWebpackPlugin()
-    ],
-    externals: {
-        'react-dom': {
-            root: 'ReactDOM',
-            commonjs: 'react-dom',
-            commonjs2: 'react-dom'
-        },
-        react: {
-            root: 'React',
-            commonjs: 'react',
-            commonjs2: 'react'
-        }
-    }
+    ]
 });
 
 
 var DEV_CFG = {
+    entry: {
+        'example/bundle': path.join(PATHS.example, 'app.js')
+        // index: path.join(PATHS.src, 'index.tsx'),
+    },
     devtool: 'source-map',
     devServer: {
         historyApiFallback: true,
@@ -111,6 +97,10 @@ var DEV_CFG = {
 
 
 var BUILD_CFG = {
+    entry: {
+        'dist/calendar': [path.join(PATHS.src, 'calendar/Calendar.tsx')],// './index.js',
+        'dist/datepicker': [path.join(PATHS.src, 'Datepicker.tsx')]
+    },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
             compress: {
@@ -126,15 +116,30 @@ var BUILD_CFG = {
             }
         }),
         new CleanPlugin([PATHS.distr])
-    ]
+    ],
+    externals: {
+        'react-dom': {
+            root: 'ReactDOM',
+            amd: 'ReactDOM',
+            commonjs: 'react-dom',
+            commonjs2: 'react-dom'
+        },
+        react: {
+            root: 'React',
+            amd: 'React',
+            commonjs: 'react',
+            commonjs2: 'react'
+        }
+    }
 }
 
+//FRONTEND_CFG = _.mergeWith(FRONTEND_CFG, BUILD_CFG, customizer);
 
 if (TARGET === 'start' || !TARGET) {
-    FRONTEND_CFG = _.mergeWith(FRONTEND_CFG, DEV_CFG, customizer)
+    FRONTEND_CFG = _.mergeWith(FRONTEND_CFG, DEV_CFG, customizer);
 }
 
-if (TARGET === 'build') {
+if (TARGET === 'compile:dist') {
     FRONTEND_CFG = _.mergeWith(FRONTEND_CFG, BUILD_CFG, customizer);
 }
 
