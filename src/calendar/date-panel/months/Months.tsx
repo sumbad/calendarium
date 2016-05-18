@@ -1,3 +1,5 @@
+const calendarStyle = require('../../calendarStyle');
+
 import * as React from 'react';
 import ReactDOM = require('react-dom');
 import {DateUtilities} from '../../../DateUtilities';
@@ -25,9 +27,9 @@ export class Months extends React.Component<IMonthsProps, IMonthsState> {
         let month2col = [];
 
         DateUtilities.locale.months.forEach((month, index) => {
-            let selected = this.props.selectedDate.getMonth() == index ? "selected" : "";
+            let selected = this.props.selectedDate.getMonth() == index ? calendarStyle["selected"] : "";
             
-            let m = <li key={index} onClick={this.handleClickMonth.bind(this, index)} className={"month " + selected}>{month}</li>;
+            let m = <li key={index} onClick={this.handleClickMonth.bind(this, index)} className={calendarStyle["month"] + " " + selected}>{month}</li>;
             
             if (index < 6) {
                 month1col.push(m);
@@ -37,7 +39,7 @@ export class Months extends React.Component<IMonthsProps, IMonthsState> {
         });
 
         return (
-            <div className="months">
+            <div className={calendarStyle["months"]}>
                 <ul>
                     {month1col}
                 </ul>

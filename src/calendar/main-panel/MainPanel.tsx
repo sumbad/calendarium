@@ -1,3 +1,5 @@
+const calendarStyle = require('../calendarStyle');
+
 import * as React from 'react';
 
 import {DateUtilities} from '../../DateUtilities';
@@ -32,23 +34,23 @@ export class MainPanel extends React.Component<IMainPanelProps, IMainPanelState>
         let minutes = DateUtilities.pad(this.props.selectedDate.getMinutes().toString(), 2);
 
         return (
-            <div className="main-panel">
-                <label onClick={this.handleClickDay.bind(this) } className={"chosen-day " + (this.state.chosen === "day" ? "selected" : "")}>{day}</label>
-                <label onClick={this.handleClickMonth.bind(this) } className={"chosen-month " + (this.state.chosen === "month" ? "selected" : "")}>{month}</label>
-                <label onClick={this.handleClickYear.bind(this) } className={"chosen-year " + (this.state.chosen === "year" ? "selected" : "")}>{year}</label>
-                <label className="chosen-time">
-                    <div className={"chosen-time__hour " + (this.state.chosen === "hour" ? "selected" : "")}>
-                        <div onClick={this.handleClickHoursArrowUp.bind(this) } className="arrow-up"></div>
+            <div className={calendarStyle["main-panel"]}>
+                <label onClick={this.handleClickDay.bind(this) } className={calendarStyle["chosen-day"] + " " + (this.state.chosen === "day" ? calendarStyle["selected"] : "")}>{day}</label>
+                <label onClick={this.handleClickMonth.bind(this) } className={calendarStyle["chosen-month"] + " " + (this.state.chosen === "month" ? calendarStyle["selected"] : "")}>{month}</label>
+                <label onClick={this.handleClickYear.bind(this) } className={calendarStyle["chosen-year"] + " " + (this.state.chosen === "year" ? calendarStyle["selected"] : "")}>{year}</label>
+                <label className={calendarStyle["chosen-time"]}>
+                    <div className={calendarStyle["chosen-time__hour"] + " " + (this.state.chosen === "hour" ? calendarStyle["selected"] : "")}>
+                        <div onClick={this.handleClickHoursArrowUp.bind(this) } className={calendarStyle["arrow-up"]}></div>
                         <span onClick={this.handleClickHours.bind(this) }>{hours}</span>
-                        <div onClick={this.handleClickHoursArrowDown.bind(this) } className="arrow-down"></div>
+                        <div onClick={this.handleClickHoursArrowDown.bind(this) } className={calendarStyle["arrow-down"]}></div>
                     </div>
-                    <div className="chosen-time__colon">
+                    <div className={calendarStyle["chosen-time__colon"]}>
                         <span>: </span>
                     </div>
-                    <div className={"chosen-time__minute " + (this.state.chosen === "minute" ? "selected" : "")}>
-                        <div onClick={this.handleClickMinutesArrowUp.bind(this) } className="arrow-up"></div>
+                    <div className={calendarStyle["chosen-time__minute"] + " " + (this.state.chosen === "minute" ? calendarStyle["selected"] : "")}>
+                        <div onClick={this.handleClickMinutesArrowUp.bind(this) } className={calendarStyle["arrow-up"]}></div>
                         <span onClick={this.handleClickMinutes.bind(this) }>{minutes}</span>
-                        <div onClick={this.handleClickMinutesArrowDown.bind(this) } className="arrow-down"></div>
+                        <div onClick={this.handleClickMinutesArrowDown.bind(this) } className={calendarStyle["arrow-down"]}></div>
                     </div>
                 </label>
             </div>

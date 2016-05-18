@@ -1,3 +1,5 @@
+const calendarStyle = require('./calendar/calendarStyle');
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -57,10 +59,10 @@ export class DatePicker extends React.Component<IDatePickerProps, IDatePickerSta
 
     render() {
         return (
-            <div id={this.props.id} className="ardp-date-picker">
+            <div id={this.props.id} className={calendarStyle["ardp-date-picker"]}>
                 <input ref="trigger"
                     type="text"
-                    className={"date-picker-trigger-" + this.props.id}
+                    className={calendarStyle["date-picker-trigger-"] + this.props.id}
                     readOnly={true}
                     value={DateUtilities.formatDate(this.state.selectedDate) }
                     onClick={this.show.bind(this) }/>

@@ -1,3 +1,5 @@
+const calendarStyle = require('../../calendarStyle');
+
 import React = require('react');
 import {DateUtilities} from '../../../DateUtilities';
 
@@ -36,7 +38,7 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
         });
 
         return (
-            <div className="week">
+            <div className={calendarStyle["week"]}>
                 {DaysElement}
             </div>
         );
@@ -70,15 +72,15 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
     
 
     getDayClassName(day) {
-        var className = "day";
+        var className = calendarStyle["day"];
         if (DateUtilities.isSameDay(day, new Date()))
-            className += " today";
+            className += " " + calendarStyle["today"];
         if (this.props.month !== day.getMonth())
-            className += " other-month";
+            className += " " + calendarStyle["other-month"];
         if (this.props.selectedDate && DateUtilities.isSameDay(day, this.props.selectedDate))
-            className += " selected";
+            className += " " + calendarStyle["selected"];
         if (this.isDisabled(day))
-            className += " disabled";
+            className += " " + calendarStyle["disabled"];
         return className;
     }
     

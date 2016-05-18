@@ -7,6 +7,8 @@ var ReactDOM = require('react-dom');
 
 var DatePicker = require('../src/Datepicker').DatePicker;
 
+//console.log(Calendarium);
+
 //import {DatePicker} from '../src/DatePicker';
 
 //ReactDOM.render(<DatePicker id={getUniqueIdentifier() }/>, document.getElementById('datepicker'));

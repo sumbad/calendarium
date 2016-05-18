@@ -1,22 +1,8 @@
 {
   "name": "calendarium",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "React datetime picker",
-  "main": "webpack.config.js",
-  "scripts": {
-    "start": "webpack-dev-server --progress --colors --content-base example/",
-    "clean:dist": "rimraf ./dist/*",
-    "clean:lib": "rimraf ./lib/*",
-    "compile:dist": "webpack",
-    "compile:lib": "tsc --rootDir ./src --outDir ./lib",
-    "less": "lessc -x src/calendar/calendarStyle.less lib/calendar/calendarStyle.css",
-    "assets:lib": "cpy src/locale/* lib/locale/",
-    "build:dist": "npm run clean:dist && npm run compile:dist",
-    "build:lib": "npm run clean:lib && npm run compile:lib && npm run less && npm run assets:lib",
-    "build": "npm run build:lib && npm run build:dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
+    "keywords": [
     "react",
     "react-component",
     "calendar",
@@ -25,6 +11,20 @@
   ],
   "author": "sumbad",
   "license": "ISC",
+  "main": "dist/calendarium.js",
+  "scripts": {
+    "start": "webpack-dev-server --progress --colors --content-base dev/",
+    "clean:dist": "rimraf ./dist/*",
+    "clean:lib": "rimraf ./lib/*",
+    "compile:dist": "webpack",
+    "compile:lib": "tsc --rootDir ./src --outDir ./lib",
+    "less": "lessc src/calendar/calendarStyle.less lib/calendar/calendarStyle.css",
+    "assets:lib": "cpy src/locale/* lib/locale/",
+    "build:dist": "npm run clean:dist && npm run compile:dist",
+    "build:lib": "npm run clean:lib && npm run compile:lib && npm run less && npm run assets:lib",
+    "build": "npm run build:lib && npm run build:dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "peerDependencies": {
     "react": "^0.14.7",
     "react-dom": "^0.14.7"

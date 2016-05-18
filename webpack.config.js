@@ -12,8 +12,10 @@ const PATHS = {
     src: path.join(__dirname, 'src'),
     node_modules: path.join(__dirname, 'node_modules'),
     distr: path.join(__dirname, 'distr'),
-    example: path.join(__dirname, 'example')
+    dev: path.join(__dirname, 'dev')
 };
+
+
 
 var BASE_CFG = {
     resolve: {
@@ -32,11 +34,11 @@ var BASE_CFG = {
             },
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader"
+                loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]"
             },
             {
                 test: /\.less$/,
-                loader: "style-loader!css-loader!postcss-loader!less-loader"
+                loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!less-loader"
             },
             {
                 include: /\.json$/,
@@ -48,33 +50,20 @@ var BASE_CFG = {
 };
 
 
-var FRONTEND_CFG = _.merge(BASE_CFG, {
-    //context: PATHS.src,
-    output: {
-        path: __dirname,
-        filename: '[name].js',
-        library: 'Calendarium',
-        libraryTarget: 'umd'
-        // publicPath: '/'
-    },
-    plugins: [
-        // Make html file from template
-        new HtmlWebpackPlugin({
-            template: path.join(PATHS.example, 'index.html'),
-            filename: 'index.html',
-            title: 'Calendarium',
-            inject: false
-        })
-        // Basic Usage
-        //new HtmlWebpackPlugin()
-    ]
-});
 
 
 var DEV_CFG = {
     entry: {
-        'example/bundle': path.join(PATHS.example, 'app.js')
+        'dev/bundle': path.join(PATHS.dev, 'app.js')
         // index: path.join(PATHS.src, 'index.tsx'),
+    },
+    output: {
+        path: __dirname,
+        filename: '[name].js',
+        // publicPath: '/dev/'
+        //library: 'Calendarium',
+        //libraryTarget: 'umd'
+
     },
     devtool: 'source-map',
     devServer: {
@@ -91,15 +80,32 @@ var DEV_CFG = {
         port: process.env.PORT
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        // Make html file from template
+        new HtmlWebpackPlugin({
+            template: path.join(PATHS.dev, 'index.html'),
+            filename: 'index.html',
+            title: 'Calendarium',
+            inject: false
+        })
+        // Basic Usage
+        //new HtmlWebpackPlugin()
     ]
 }
 
 
 var BUILD_CFG = {
     entry: {
-        'dist/calendar': [path.join(PATHS.src, 'calendar/Calendar.tsx')],// './index.js',
+        'dist/calendarium': [path.join(PATHS.src, 'index.ts')],
+        'dist/calendar': [path.join(PATHS.src, 'calendar/Calendar.tsx')],
         'dist/datepicker': [path.join(PATHS.src, 'Datepicker.tsx')]
+    },
+    output: {
+        path: __dirname,
+        filename: '[name].js',
+        library: 'Calendarium',
+        libraryTarget: 'umd'
+        // publicPath: '/'
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
@@ -133,7 +139,9 @@ var BUILD_CFG = {
     }
 }
 
-//FRONTEND_CFG = _.mergeWith(FRONTEND_CFG, BUILD_CFG, customizer);
+
+
+var FRONTEND_CFG = BASE_CFG;
 
 if (TARGET === 'start' || !TARGET) {
     FRONTEND_CFG = _.mergeWith(FRONTEND_CFG, DEV_CFG, customizer);

@@ -5,7 +5,8 @@
  * @author sumbad
  */
 
-import './calendarStyle';
+// import styles from './calendarStyle';
+const calendarStyle = require('./calendarStyle');
 
 import * as React from 'react';
 
@@ -108,11 +109,14 @@ export class Calendar extends React.Component<ICalendarProps, ICalendarState> {
                 );
                 break;
         }
+        
+        // console.log("/////////////////////////////////////////////////");
+        
 
         return (
-            <div className={"ardp-calendar-" + this.props.id + " calendar" + (this.props.visible ? " calendar-show" : " calendar-hide") } style={style}>
+            <div className={calendarStyle["ardp-calendar-"] + this.props.id + " " + calendarStyle["calendar"] + " " + (this.props.visible ? calendarStyle["calendar-show"] : calendarStyle["calendar-hide"]) } style={style}>
                 <MainPanel onSelect={this.props.onSelect} selectedDate={this.props.selectedDate} handleClick={this.handleClick.bind(this) }/>
-                <div className="date-panel">
+                <div className={calendarStyle["date-panel"]}>
                     {datePanel}
                 </div>
                 <ControlPanel onSelect={this.props.onSelect} onClose={this.props.onClose}/>

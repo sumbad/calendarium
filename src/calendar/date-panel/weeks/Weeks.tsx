@@ -1,3 +1,5 @@
+const calendarStyle = require('../../calendarStyle');
+
 import * as React from 'react';
 import ReactDOM = require('react-dom');
 import {DateUtilities} from '../../../DateUtilities';
@@ -27,16 +29,16 @@ export class Weeks extends React.Component<IWeeksProps, IWeeksState> {
         let weeks = this.renderWeeks(DateUtilities.clone(this.props.selectedDate));
         
         let weekHeader = DateUtilities.locale.week.map(w=>{
-            return (<span key={w.name} className={w.class}>{w.name}</span>);
+            return (<span key={w.name} className={calendarStyle[w.class]}>{w.name}</span>);
         });
 
         return (
-            <div className="weeks">
-                <div className="week-header">
+            <div className={calendarStyle["weeks"]}>
+                <div className={calendarStyle["week-header"]}>
                     {weekHeader}
                 </div>
-                <div className="week-body">
-                    <div  ref="current" className={"current"}>
+                <div className={calendarStyle["week-body"]}>
+                    <div  ref="current" className={calendarStyle["current"]}>
                         {weeks}
                     </div>
                 </div>

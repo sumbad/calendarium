@@ -1,3 +1,5 @@
+const calendarStyle = require('../../calendarStyle');
+
 import * as React from 'react';
 import ReactDOM = require('react-dom');
 import {DateUtilities} from '../../../DateUtilities';
@@ -23,15 +25,19 @@ export class Hours extends React.Component<IHoursProps, IHoursState> {
 
     render() {
         let hours = [];
-        
+
         for (var hour = 0; hour <= 23; hour++) {
-            let selected = this.props.selectedDate.getHours()===hour ? "selected" : "";
-            hours.push(<div key={hour} onClick={this.handleClickHour.bind(this, hour) } className={"hour "+selected}>{DateUtilities.pad(hour.toString(), 2)}</div>);
+            let selected = this.props.selectedDate.getHours() === hour ? calendarStyle["selected"] : "";
+            hours.push(
+                <div key={hour} onClick={this.handleClickHour.bind(this, hour) } className={calendarStyle["hour"] + " " + selected}>
+                    {DateUtilities.pad(hour.toString(), 2) }
+                </div>
+            );
         }
 
 
         return (
-            <div className="hours">
+            <div className={calendarStyle["hours"]}>
                 {hours}
             </div>
         );

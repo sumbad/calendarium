@@ -1,3 +1,5 @@
+const calendarStyle = require('../../calendarStyle');
+
 import * as React from 'react';
 import ReactDOM = require('react-dom');
 import {DateUtilities} from '../../../DateUtilities';
@@ -28,9 +30,9 @@ export class Years extends React.Component<IYearsProps, IYearsState> {
 
     render() {
         let years = this.state.years.map(year => {
-            let selected = this.props.selectedDate.getFullYear() == year ? "selected" : "";
+            let selected = this.props.selectedDate.getFullYear() == year ? calendarStyle["selected"] : "";
             return (
-                <li key={year} onClick={this.handleClickYear.bind(this, year) } className={"year " + selected}>{year}</li>
+                <li key={year} onClick={this.handleClickYear.bind(this, year) } className={calendarStyle["year"] + " " + selected}>{year}</li>
             );
         });
 
@@ -38,9 +40,9 @@ export class Years extends React.Component<IYearsProps, IYearsState> {
         let years2col = years.slice(6, 12);
 
         return (
-            <div className="years">
-                <div onClick={this.handleClickArrowLeft.bind(this) } className="arrow-left"></div>
-                <div className="years-columns">
+            <div className={calendarStyle["years"]}>
+                <div onClick={this.handleClickArrowLeft.bind(this) } className={calendarStyle["arrow-left"]}></div>
+                <div className={calendarStyle["years-columns"]}>
                     <ul>
                         {years1col}
                     </ul>
@@ -48,7 +50,7 @@ export class Years extends React.Component<IYearsProps, IYearsState> {
                         {years2col}
                     </ul>
                 </div>
-                <div onClick={this.handleClickArrowRight.bind(this) } className="arrow-right"></div>
+                <div onClick={this.handleClickArrowRight.bind(this) } className={calendarStyle["arrow-right"]}></div>
             </div>
         );
     }
