@@ -1,6 +1,12 @@
+/**__________________________________________________________________________________________________________________
+ * | Calendarium is a React component.
+ * |
+ * @author sumbad
+ */
+
 import {Calendar} from './calendar/Calendar';
 import {DatePicker} from './Datepicker'
-import {DateUtilities} from './DateUtilities'
+import {DateUtilities} from './util/DateUtilities'
 
 
 if (process.env.NODE_ENV !== 'production' ) {
@@ -15,7 +21,7 @@ if (process.env.NODE_ENV !== 'production' ) {
 }
 
 module.exports = {
-  Calendar:  Calendar,//   require('./calendar/Calendar').Calendar,
+  Calendar:  Calendar,
   DatePicker:   DatePicker,
 
   utils: {

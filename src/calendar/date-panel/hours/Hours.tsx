@@ -2,7 +2,7 @@ const calendarStyle = require('../../calendarStyle');
 
 import * as React from 'react';
 import ReactDOM = require('react-dom');
-import {DateUtilities} from '../../../DateUtilities';
+import {DateUtilities} from '../../../util/DateUtilities';
 
 
 interface IHoursProps {

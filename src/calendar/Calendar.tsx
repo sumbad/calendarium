@@ -1,11 +1,3 @@
-/**__________________________________________________________________________________________________________________
- * | Calendar is a React component.
- * | Uses inside calendar.
- * |
- * @author sumbad
- */
-
-// import styles from './calendarStyle';
 const calendarStyle = require('./calendarStyle');
 
 import * as React from 'react';
@@ -18,7 +10,6 @@ import {Months} from './date-panel/months/Months'
 import {Years} from './date-panel/years/Years'
 import {Hours} from './date-panel/hours/Hours'
 import {Minutes} from './date-panel/minutes/Minutes'
-
 
 
 interface ICalendarProps {
@@ -109,12 +100,9 @@ export class Calendar extends React.Component<ICalendarProps, ICalendarState> {
                 );
                 break;
         }
-        
-        // console.log("/////////////////////////////////////////////////");
-        
 
         return (
-            <div className={calendarStyle["ardp-calendar-"] + this.props.id + " " + calendarStyle["calendar"] + " " + (this.props.visible ? calendarStyle["calendar-show"] : calendarStyle["calendar-hide"]) } style={style}>
+            <div className={calendarStyle["calendar"] + " " + (this.props.visible ? calendarStyle["calendar-show"] : calendarStyle["calendar-hide"]) } style={style}>
                 <MainPanel onSelect={this.props.onSelect} selectedDate={this.props.selectedDate} handleClick={this.handleClick.bind(this) }/>
                 <div className={calendarStyle["date-panel"]}>
                     {datePanel}
@@ -135,4 +123,8 @@ export class Calendar extends React.Component<ICalendarProps, ICalendarState> {
         this.state.datePanelSelected = selected;
         this.setState(this.state);
     }
+
+    //
+    // ADDITIONAL METHODS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

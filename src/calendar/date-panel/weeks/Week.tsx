@@ -1,7 +1,7 @@
 const calendarStyle = require('../../calendarStyle');
 
 import React = require('react');
-import {DateUtilities} from '../../../DateUtilities';
+import {DateUtilities} from '../../../util/DateUtilities';
 
 
 interface IWeekProps {
@@ -11,7 +11,7 @@ interface IWeekProps {
     selectedDate: Date;
     minDate: Date;
     maxDate: Date;
-    onSelect: (date:Date) => void;
+    onSelect: (date: Date) => void;
 }
 
 interface IWeekState { }
@@ -21,8 +21,6 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
     constructor(props: IWeekProps) {
         super(props);
 
-        // this.isDisabled = this.isDisabled.bind(this);
-        //this.onSelect = this.onSelect.bind(this);
     }
 
 
@@ -45,8 +43,9 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
     }
 
 
-    /*** ADDITIONAL METHODS **************************************************************************************/
-
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // ADDITIONAL METHODS
+    //
 
     /** 
      * Create days of the week
@@ -64,12 +63,12 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
         }
         return days;
     }
-    
+
 
     isOtherMonth(day) {
         return this.props.month !== day.month();
     }
-    
+
 
     getDayClassName(day) {
         var className = calendarStyle["day"];
@@ -83,7 +82,7 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
             className += " " + calendarStyle["disabled"];
         return className;
     }
-    
+
 
     onSelect(day) {
         if (!this.isDisabled(day))
@@ -95,5 +94,10 @@ export class Week extends React.Component<IWeekProps, IWeekState>{
             maxDate = this.props.maxDate;
         return (minDate && DateUtilities.isBefore(day, minDate)) || (maxDate && DateUtilities.isAfter(day, maxDate));
     }
+    
+    //
+    // ADDITIONAL METHODS
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 }

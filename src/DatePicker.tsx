@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import {Calendar} from './calendar/Calendar';
-import {DateUtilities} from './DateUtilities';
+import {DateUtilities} from './util/DateUtilities';
 
 const packageJson = require('../package.json');
 const locale = require('./locale/ru.json');
@@ -59,10 +59,9 @@ export class DatePicker extends React.Component<IDatePickerProps, IDatePickerSta
 
     render() {
         return (
-            <div id={this.props.id} className={calendarStyle["ardp-date-picker"]}>
+            <div id={this.props.id}>
                 <input ref="trigger"
                     type="text"
-                    className={calendarStyle["date-picker-trigger-"] + this.props.id}
                     readOnly={true}
                     value={DateUtilities.formatDate(this.state.selectedDate) }
                     onClick={this.show.bind(this) }/>
@@ -82,7 +81,6 @@ export class DatePicker extends React.Component<IDatePickerProps, IDatePickerSta
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // ADDITIONAL METHODS
     //
-
 
     hideOnDocumentClick(e) {
         let parent = e.target;
@@ -124,7 +122,6 @@ export class DatePicker extends React.Component<IDatePickerProps, IDatePickerSta
         this.state.visible = true;
         this.setState(this.state);
     }
-
 
     //
     // ADDITIONAL METHODS

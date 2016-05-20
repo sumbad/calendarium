@@ -2,7 +2,7 @@ declare var require;
 
 export class DateUtilities {
 
-    public static locale = require('./locale/en.json');;
+    public static locale = require('../locale/en.json');;
 
     public static loadLocale(locale): void {
         this.locale = locale;
