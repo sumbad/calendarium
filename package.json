@@ -2,6 +2,13 @@
   "name": "calendarium",
   "version": "0.2.5",
   "description": "React datetime picker",
+  "main": "dist/calendarium.js",
+  "author": "sumbad",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sumbad/calendarium"
+  },
   "keywords": [
     "react",
     "react-component",
@@ -9,9 +16,6 @@
     "datetime",
     "picker"
   ],
-  "author": "sumbad",
-  "license": "ISC",
-  "main": "dist/calendarium.js",
   "scripts": {
     "start": "webpack-dev-server --progress --colors --content-base dev/",
     "clean:dist": "rimraf ./dist/*",
