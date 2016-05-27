@@ -4,19 +4,17 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 var DatePicker = require('../src/Datepicker').DatePicker;
+// var DatePicker = require('../dist/calendarium').DatePicker;
 
-//console.log(Calendarium);
-
-//import {DatePicker} from '../src/DatePicker';
 
 //ReactDOM.render(<DatePicker id={getUniqueIdentifier() }/>, document.getElementById('datepicker'));
-
-var comp = React.createElement(DatePicker, { id: getUniqueIdentifier() });
+var myCDP1 = React.createElement(DatePicker, { id: getUniqueIdentifier() });
 
 ReactDOM.render(
-    comp, 
+    myCDP1, 
     document.getElementById('datepicker')
 );
+
 
 /**
  * Get an unique identifier for datepicker, we can use any different id
@@ -31,25 +29,5 @@ function getUniqueIdentifier() {
     }
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 };
-
-
-
-
-
-
-// var Hello = React.createClass({
-//   displayName: 'Hello',
-//   render: function() {
-//     return React.createElement("div", null, "Hello ", this.props.name);
-//   }
-// });
-
-
-// ReactDOM.render(
-//   React.createElement(Hello, {name: "World"}),
-//   document.getElementById('datepicker')
-// );
-
-
 
 

@@ -1,9 +1,8 @@
 .calendar {
+  /* HTML5 display-role reset for older browsers */
+  box-sizing: border-box;
   font-size: 16px;
   font-family: Arial;
-  /* Применяется для изменения алгоритма расчёта ширины и высоты элемента. */
-  box-sizing: border-box;
-  /* Ширина блока с полями но не отступов (margin). Используется IE в режиме совместимости */
   position: absolute;
   z-index: 10;
   width: 280px;
@@ -14,6 +13,130 @@
   border-radius: 1px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   overflow: hidden;
+}
+.calendar html,
+.calendar body,
+.calendar div,
+.calendar span,
+.calendar applet,
+.calendar object,
+.calendar iframe,
+.calendar h1,
+.calendar h2,
+.calendar h3,
+.calendar h4,
+.calendar h5,
+.calendar h6,
+.calendar p,
+.calendar blockquote,
+.calendar pre,
+.calendar a,
+.calendar abbr,
+.calendar acronym,
+.calendar address,
+.calendar big,
+.calendar cite,
+.calendar code,
+.calendar del,
+.calendar dfn,
+.calendar em,
+.calendar img,
+.calendar ins,
+.calendar kbd,
+.calendar q,
+.calendar s,
+.calendar samp,
+.calendar small,
+.calendar strike,
+.calendar strong,
+.calendar sub,
+.calendar sup,
+.calendar tt,
+.calendar var,
+.calendar b,
+.calendar u,
+.calendar i,
+.calendar center,
+.calendar dl,
+.calendar dt,
+.calendar dd,
+.calendar ol,
+.calendar ul,
+.calendar li,
+.calendar fieldset,
+.calendar form,
+.calendar label,
+.calendar legend,
+.calendar table,
+.calendar caption,
+.calendar tbody,
+.calendar tfoot,
+.calendar thead,
+.calendar tr,
+.calendar th,
+.calendar td,
+.calendar article,
+.calendar aside,
+.calendar canvas,
+.calendar details,
+.calendar embed,
+.calendar figure,
+.calendar figcaption,
+.calendar footer,
+.calendar header,
+.calendar hgroup,
+.calendar menu,
+.calendar nav,
+.calendar output,
+.calendar ruby,
+.calendar section,
+.calendar summary,
+.calendar time,
+.calendar mark,
+.calendar audio,
+.calendar video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  line-height: normal;
+}
+.calendar article,
+.calendar aside,
+.calendar details,
+.calendar figcaption,
+.calendar figure,
+.calendar footer,
+.calendar header,
+.calendar hgroup,
+.calendar menu,
+.calendar nav,
+.calendar section {
+  display: block;
+}
+.calendar body {
+  line-height: 1;
+}
+.calendar ol,
+.calendar ul {
+  list-style: none;
+}
+.calendar blockquote,
+.calendar q {
+  quotes: none;
+}
+.calendar blockquote:before,
+.calendar blockquote:after,
+.calendar q:before,
+.calendar q:after {
+  content: '';
+  content: none;
+}
+.calendar table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 .calendar * {
   box-sizing: border-box;
@@ -56,18 +179,25 @@
   font-size: 1.6em;
   display: flex;
   align-items: center;
+  padding: 10px 0 10px 0;
 }
-.calendar .main-panel .chosen-time .arrow-up {
-  width: 0;
-  height: 0;
+.calendar .main-panel .chosen-time .chosen-minutes,
+.calendar .main-panel .chosen-time .chosen-hours {
+  position: relative;
+}
+.calendar .main-panel .chosen-time .chosen-minutes .arrow-up,
+.calendar .main-panel .chosen-time .chosen-hours .arrow-up {
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-bottom: 9px solid #FFFFFF;
   margin-left: 7px;
-  position: relative;
+  position: absolute;
+  top: -10px;
+  left: 0;
   cursor: pointer;
 }
-.calendar .main-panel .chosen-time .arrow-up:after {
+.calendar .main-panel .chosen-time .chosen-minutes .arrow-up:after,
+.calendar .main-panel .chosen-time .chosen-hours .arrow-up:after {
   position: absolute;
   content: "";
   border-left: 3px solid transparent;
@@ -75,20 +205,23 @@
   border-bottom: 4px solid #307E96;
   margin: 3px 0 0 -3px;
 }
-.calendar .main-panel .chosen-time .arrow-up:hover:after {
+.calendar .main-panel .chosen-time .chosen-minutes .arrow-up:hover:after,
+.calendar .main-panel .chosen-time .chosen-hours .arrow-up:hover:after {
   display: none;
 }
-.calendar .main-panel .chosen-time .arrow-down {
-  width: 0;
-  height: 0;
+.calendar .main-panel .chosen-time .chosen-minutes .arrow-down,
+.calendar .main-panel .chosen-time .chosen-hours .arrow-down {
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-top: 9px solid #FFFFFF;
   margin-left: 7px;
-  position: relative;
+  position: absolute;
   cursor: pointer;
+  bottom: -10px;
+  left: 0;
 }
-.calendar .main-panel .chosen-time .arrow-down:after {
+.calendar .main-panel .chosen-time .chosen-minutes .arrow-down:after,
+.calendar .main-panel .chosen-time .chosen-hours .arrow-down:after {
   position: absolute;
   content: "";
   border-left: 3px solid transparent;
@@ -96,7 +229,8 @@
   border-top: 4px solid #307E96;
   margin: -7px 0 0 -3px;
 }
-.calendar .main-panel .chosen-time .arrow-down:hover:after {
+.calendar .main-panel .chosen-time .chosen-minutes .arrow-down:hover:after,
+.calendar .main-panel .chosen-time .chosen-hours .arrow-down:hover:after {
   display: none;
 }
 .calendar .main-panel .selected {
@@ -416,10 +550,11 @@
   padding: 6px;
 }
 .calendar .button-contour {
+  font-size: 14px;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
-  padding-top: 2px;
+  padding: 3px 7px;
   display: block;
   outline: 0;
   background-color: #307E96;

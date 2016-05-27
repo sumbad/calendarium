@@ -45,27 +45,38 @@ There are several approaches to use **calendarium**:
       var DatePicker = Calendarium.DatePicker;
       
       ReactDOM.render(
-        <DatePicker id={getUniqueIdentifier()}/>,
+        <DatePicker id="myCDP1"/>,
         document.getElementById('example')
       );
-      
-      /**
-        * Get an unique identifier for datepicker, we can use any different id
-        * 
-        * @return string
-       */
-        function getUniqueIdentifier() {
-            function s4() {
-                return Math.floor((1 + Math.random()) * 0x10000)
-                    .toString(16)
-                    .substring(1);
-            }
-            return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
-        };
-
     </script>
 </body>
 </html>
 ```
 
 
+### with webpack + ES5 (withowt JSX)
+
+```javascript    
+var React = require('react');
+var ReactDOM = require('react-dom');
+
+var DatePicker = require('calendarium').DatePicker;
+
+var myCDP1 = React.createElement(DatePicker, { id: "myCDP1" });
+
+ReactDOM.render(
+    myCDP1, 
+    document.getElementById('datepicker')
+);
+```
+
+
+### with webpack + ES2015
+
+```javascript    
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import {DatePicker} from 'calendarium';
+
+ReactDOM.render(<DatePicker id="myCDP1"/>, document.getElementById('datepicker'));
+```

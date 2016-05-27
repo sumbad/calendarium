@@ -1,3 +1,6 @@
+@import (reference) "../reset.less";
+
+
 @calendar__background: #307E96;
 @calendar__color: #FFFFFF;
 @calendar__width: 280px;
@@ -21,25 +24,22 @@
 @control-panel__width: @calendar__width;
 @control-panel__height: @calendar__height - @main-panel__height;
 
-
-
-
-
-
-
-
-
+   
 .calendar {
-    font-size:16px;
-    font-family:Arial;
     
-    /* Применяется для изменения алгоритма расчёта ширины и высоты элемента. */
-    box-sizing: border-box; /* Ширина блока с полями но не отступов (margin). Используется IE в режиме совместимости */
-
-    * {
-        box-sizing: border-box;
-    }
+    .reset();
     
+    
+    //   all: initial;
+      box-sizing: border-box;
+      * {
+        // all: unset;
+        box-sizing: border-box;      
+        }
+        
+    
+    font-size: 16px;
+    font-family: Arial;   
     position: absolute;
     z-index: 10;
     width: @calendar__width;
@@ -95,49 +95,51 @@
             font-size: 1.6em;
             display: flex;
             align-items: center;
-
-            .arrow-up {
-                width: 0; 
-                height: 0; 
-                border-left: 7px solid transparent;
-                border-right: 7px solid transparent;
-                border-bottom: 9px solid @main-panel__color;
-                margin-left: 7px;
+            padding: 10px 0 10px 0;   
+            .chosen-minutes, .chosen-hours  {
                 position: relative;
-                cursor: pointer;
-                &:after {
+                .arrow-up {
+                    border-left: 7px solid transparent;
+                    border-right: 7px solid transparent;
+                    border-bottom: 9px solid @main-panel__color;
+                    margin-left: 7px;
                     position: absolute;
-                    content: "";
-                    border-left: 3px solid transparent;
-                    border-right: 3px solid transparent;
-                    border-bottom: 4px solid @main-panel__background;
-                    margin: 3px 0 0 -3px;
-                }
-                &:hover:after {
-                    display: none;
-                }       
-            }
-
-            .arrow-down {
-                width: 0; 
-                height: 0; 
-                border-left: 7px solid transparent;
-                border-right: 7px solid transparent;
-                border-top: 9px solid @main-panel__color;
-                margin-left: 7px;
-                position: relative;
-                cursor: pointer;
-                &:after {
+                    top: -10px;
+                    left: 0;
+                    cursor: pointer;
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        border-left: 3px solid transparent;
+                        border-right: 3px solid transparent;
+                        border-bottom: 4px solid @main-panel__background;
+                        margin: 3px 0 0 -3px;
+                    }
+                    &:hover:after {
+                        display: none;
+                    }       
+                }  
+                .arrow-down {
+                    border-left: 7px solid transparent;
+                    border-right: 7px solid transparent;
+                    border-top: 9px solid @main-panel__color;
+                    margin-left: 7px;
                     position: absolute;
-                    content: "";
-                    border-left: 3px solid transparent;
-                    border-right: 3px solid transparent;
-                    border-top: 4px solid @main-panel__background;
-                    margin: -7px 0 0 -3px;
+                    cursor: pointer;
+                    bottom: -10px;
+                    left: 0;
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        border-left: 3px solid transparent;
+                        border-right: 3px solid transparent;
+                        border-top: 4px solid @main-panel__background;
+                        margin: -7px 0 0 -3px;
+                    }
+                    &:hover:after {
+                        display: none;
+                    }                
                 }
-                &:hover:after {
-                    display: none;
-                }                
             }
         }
         
@@ -498,10 +500,11 @@
     
     
     .button-contour {
+        font-size: 14px;
         text-transform: uppercase;
         text-align: center;
         cursor: pointer;
-        padding-top: 2px; 
+        padding: 3px 7px; 
         display: block;
         outline: 0;
         background-color: @calendar__background;
@@ -509,7 +512,7 @@
         color: @calendar__color;
         border-radius: 2px;
         transition: all 0.2s ease-out;
-
+        
         &:hover, &.hover {
             background-color: @calendar__color;
             color: @calendar__background;
