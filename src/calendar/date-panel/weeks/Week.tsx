@@ -4,7 +4,7 @@ import React = require('react');
 import {DateUtilities} from '../../../util/DateUtilities';
 
 
-interface IWeekProps {
+export interface IWeekProps {
     key: number;
     start: Date;
     month: number;
@@ -14,7 +14,7 @@ interface IWeekProps {
     onSelect: (date: Date) => void;
 }
 
-interface IWeekState { }
+export interface IWeekState { }
 
 export class Week extends React.Component<IWeekProps, IWeekState>{
 

@@ -5,14 +5,14 @@ import ReactDOM = require('react-dom');
 import {DateUtilities} from '../../../util/DateUtilities';
 
 
-interface IMinutesProps {
+export interface IMinutesProps {
     selectedDate: Date;
     minDate: Date;
     maxDate: Date;
     onSelect: (date: Date) => void;
 }
 
-interface IMinutesState {
+export interface IMinutesState {
 }
 
 

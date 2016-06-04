@@ -12,7 +12,7 @@ import {Hours} from './date-panel/hours/Hours'
 import {Minutes} from './date-panel/minutes/Minutes'
 
 
-interface ICalendarProps {
+export interface ICalendarProps {
     id: string;
     selectedDate: Date;
     visible: boolean;
@@ -27,7 +27,7 @@ interface ICalendarProps {
 }
 
 
-interface ICalendarState {
+export interface ICalendarState {
     datePanelSelected: DatePanel;
 }
 

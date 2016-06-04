@@ -5,14 +5,14 @@ import ReactDOM = require('react-dom');
 import {DateUtilities} from '../../../util/DateUtilities';
 
 
-interface IYearsProps {
+export interface IYearsProps {
     selectedDate: Date;
     minDate: Date;
     maxDate: Date;
     onSelect: (date: Date) => void;
 }
 
-interface IYearsState {
+export interface IYearsState {
     years: number[];
 }
 

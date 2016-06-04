@@ -5,14 +5,14 @@ import ReactDOM = require('react-dom');
 import {DateUtilities} from '../../../util/DateUtilities';
 
 
-interface IMonthsProps {
+export interface IMonthsProps {
     selectedDate: Date;
     minDate: Date;
     maxDate: Date;
     onSelect: (date:Date) => void;
 }
 
-interface IMonthsState { }
+export interface IMonthsState { }
 
 
 export class Months extends React.Component<IMonthsProps, IMonthsState> {

@@ -4,9 +4,13 @@
     "experimentalDecorators": true,
     "module": "commonjs",
     "jsx": "react",
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "lib"
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "dist",
+    "dev"
   ]
 }

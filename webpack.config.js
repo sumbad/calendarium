@@ -25,7 +25,7 @@ var BASE_CFG = {
         loaders: [
             {
                 test: /\.ts(x?)$/,
-                loader: 'ts-loader',
+                loader: 'ts-loader?compilerOptions{"declaration": false}',
                 include: [PATHS.src]
             },
             {

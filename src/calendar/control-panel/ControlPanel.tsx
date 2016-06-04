@@ -3,12 +3,12 @@ const calendarStyle = require('../calendarStyle');
 import * as React from 'react';
 import {DateUtilities} from '../../util/DateUtilities';
 
-interface IControlPanelProps {
+export interface IControlPanelProps {
     onSelect: (date: Date) => void;
     onClose: () => void;
 }
 
-interface IControlPanelState {
+export interface IControlPanelState {
 
 }
 

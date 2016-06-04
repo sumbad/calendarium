@@ -10,12 +10,12 @@ const packageJson = require('../package.json');
 const locale = require('./locale/ru.json');
 
 
-interface IDatePickerProps {
+export interface IDatePickerProps {
     id: string;
     selectedDate?: Date;
 }
 
-interface IDatePickerState {
+export interface IDatePickerState {
     selectedDate?: Date;
     minDate?: number;
     maxDate?: number;

@@ -1,0 +1,9 @@
+{
+  "name": "calendarium",
+  "globalDependencies": {
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#b10e5ade29708bb0a7d21916a9fe289973520e89",
+    "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#6766ed1d0faf02ede9e2edf2e66bbb2388c825ec",
+    "react-dom": "github:DefinitelyTyped/DefinitelyTyped/react/react-dom.d.ts#6766ed1d0faf02ede9e2edf2e66bbb2388c825ec",
+    "lodash": "github:DefinitelyTyped/DefinitelyTyped/lodash/lodash.d.ts#e0abafb1a6ff652f7ff967120e312d5c1916eaef"
+  }
+}

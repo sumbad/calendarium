@@ -6,13 +6,13 @@ import {DateUtilities} from '../../util/DateUtilities';
 import {DatePanel} from '../date-panel/DatePanel'
 
 
-interface IMainPanelProps {
+export interface IMainPanelProps {
     selectedDate: Date;
     handleClick: (DatePanel) => void;
     onSelect: (date: Date) => void;
 }
 
-interface IMainPanelState {
+export interface IMainPanelState {
     chosen: string;
 }
 
