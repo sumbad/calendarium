@@ -1,11 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {DatePicker} from '../dist/calendarium';
 
 import * as Calendarium from '../dist/calendarium';
+const ru = require('../dist/locale/ru.json');
 
-console.log(Calendarium.DateUtilities.locale);
 
+Calendarium.DateUtilities.loadLocale(ru);
+
+let DatePicker = Calendarium.DatePicker;
 
 ReactDOM.render(<DatePicker id={getUniqueIdentifier() }/>, document.getElementById('datepicker'));
 

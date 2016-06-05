@@ -95,7 +95,7 @@ var DEV_CFG = {
 
 var BUILD_CFG = {
     entry: {
-        'dist/calendarium': [path.join(PATHS.src, 'index.ts')],
+        'dist/calendarium': [path.join(PATHS.src, 'calendarium.ts')],
         'dist/calendar': [path.join(PATHS.src, 'calendar/Calendar.tsx')],
         'dist/datepicker': [path.join(PATHS.src, 'Datepicker.tsx')]
     },

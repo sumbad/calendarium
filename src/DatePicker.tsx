@@ -43,7 +43,7 @@ export class DatePicker extends React.Component<IDatePickerProps, IDatePickerSta
 
         this.hideOnDocumentClick = this.hideOnDocumentClick.bind(this);
 
-        DateUtilities.loadLocale(locale);
+        //DateUtilities.loadLocale(locale);
     }
 
 

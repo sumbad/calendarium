@@ -1,5 +1,34 @@
 import * as React from 'react';
 
+export declare enum DatePanel {
+    Weeks = 0,
+    Months = 1,
+    Years = 2,
+    Hours = 3,
+    Minutes = 4,
+}
+
+export interface ICalendarProps {
+    id: string;
+    selectedDate: Date;
+    visible: boolean;
+    onSelect: (date: Date) => void;
+    onClose: () => void;
+    minDate?: Date;
+    maxDate?: Date;
+    position: {
+        top: number;
+        left: number;
+    };
+}
+export interface ICalendarState {
+    datePanelSelected: DatePanel;
+}
+export declare class Calendar extends React.Component<ICalendarProps, ICalendarState> {
+    constructor(props: ICalendarProps);
+    render(): JSX.Element;
+    handleClick(selected: DatePanel): void;
+}
 
 export interface IDatePickerProps {
     id: string;
@@ -30,7 +59,6 @@ export declare class DatePicker extends React.Component<IDatePickerProps, IDateP
     };
     show(): void;
 }
-
 
 export declare class DateUtilities {
     static locale: any;
@@ -66,36 +94,4 @@ export declare class DateUtilities {
     static isSameDay(first: any, second: any): boolean;
     static isBefore(first: any, second: any): boolean;
     static isAfter(first: any, second: any): boolean;
-}
-
-
-export declare enum DatePanel {
-    Weeks = 0,
-    Months = 1,
-    Years = 2,
-    Hours = 3,
-    Minutes = 4,
-}
-
-
-export interface ICalendarProps {
-    id: string;
-    selectedDate: Date;
-    visible: boolean;
-    onSelect: (date: Date) => void;
-    onClose: () => void;
-    minDate?: Date;
-    maxDate?: Date;
-    position: {
-        top: number;
-        left: number;
-    };
-}
-export interface ICalendarState {
-    datePanelSelected: DatePanel;
-}
-export declare class Calendar extends React.Component<ICalendarProps, ICalendarState> {
-    constructor(props: ICalendarProps);
-    render(): JSX.Element;
-    handleClick(selected: DatePanel): void;
 }
