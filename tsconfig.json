@@ -5,12 +5,12 @@
     "module": "commonjs",
     "jsx": "react",
     "sourceMap": true,
-    "declaration": true,
     "outDir": "lib"
   },
   "exclude": [
     "node_modules",
     "dist",
+    "src/calendarium.d.ts",
     "dev"
   ]
 }

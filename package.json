@@ -22,7 +22,7 @@
     "clean:dist": "rimraf ./dist/*",
     "clean:lib": "rimraf ./lib/*",
     "compile:dist": "webpack",
-    "compile:lib": "tsc --rootDir ./src --outDir ./lib",
+    "compile:lib": "tsc --rootDir ./src --outDir ./lib --declaration",
     "less": "lessc src/calendar/calendarStyle.less lib/calendar/calendarStyle.css",
     "assets:lib": "cpy src/locale/* lib/locale/",
     "typings:dist": "cpy src/calendarium.d.ts dist/",

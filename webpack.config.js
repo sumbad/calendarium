@@ -25,8 +25,7 @@ var BASE_CFG = {
         loaders: [
             {
                 test: /\.ts(x?)$/,
-                loader: 'ts-loader?compilerOptions{"declaration": false}',
-                include: [PATHS.src]
+                loader: 'ts-loader'
             },
             {
                 test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -54,7 +53,7 @@ var BASE_CFG = {
 
 var DEV_CFG = {
     entry: {
-        'dev/bundle': path.join(PATHS.dev, 'app.js')
+        'dev/bundle': [path.join(PATHS.dev, 'app.tsx')]
         // index: path.join(PATHS.src, 'index.tsx'),
     },
     output: {
@@ -130,7 +129,7 @@ var BUILD_CFG = {
             commonjs: 'react-dom',
             commonjs2: 'react-dom'
         },
-        react: {
+        'react': {
             root: 'React',
             amd: 'React',
             commonjs: 'react',

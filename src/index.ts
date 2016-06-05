@@ -23,8 +23,8 @@ if (process.env.NODE_ENV !== 'production' ) {
 module.exports = {
   Calendar:  Calendar,
   DatePicker:   DatePicker,
-
-  utils: {
-    DateUtilities: DateUtilities
-  }
+  DateUtilities: DateUtilities
+  // utils: {
+  //   DateUtilities: DateUtilities
+  // }
 }
