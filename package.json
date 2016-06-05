@@ -1,6 +1,6 @@
 {
   "name": "calendarium",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "React datetime picker",
   "main": "dist/calendarium.js",
   "typings": "dist/calendarium.d.ts",
