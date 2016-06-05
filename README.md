@@ -1,4 +1,5 @@
-# calendarium
+# ![calendarium](https://cdn.rawgit.com/sumbad/calendarium/master/docs/images/main.PNG)
+
 
 **calendarium** is a [React](http://facebook.github.io/react/) component for a datetime picker or just a calendar on your page.
 
@@ -13,11 +14,11 @@
 npm install calendarium --save
 ```
 
-### Browser bundle
+### browser bundle
 
 The browser bundle exposes a global `Calendarium` variable and expects to find a global `React` (>= 0.14.0) variable to work with.
 
-* [calendarium.js](https://npmcdn.com/calendarium@0.2.4) (compressed version)
+* [calendarium.js](https://npmcdn.com/calendarium) (compressed version)
 
 
 
@@ -25,7 +26,7 @@ The browser bundle exposes a global `Calendarium` variable and expects to find a
 
 There are several approaches to use **calendarium**:
 
-### with browser bundle
+### browser bundle
 
 ```html
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ There are several approaches to use **calendarium**:
 ```
 
 
-### with webpack + ES5 (withowt JSX)
+### webpack + ES5 (withowt JSX)
 
 ```javascript    
 var React = require('react');
@@ -71,7 +72,7 @@ ReactDOM.render(
 ```
 
 
-### with webpack + ES2015 or TypeScript
+### webpack + ES2015 or TypeScript
 
 ```javascript    
 import * as React from 'react';
@@ -85,7 +86,7 @@ ReactDOM.render(<DatePicker id="myCDP1"/>, document.getElementById('datepicker')
 
 ## Change language (now are English and Russian)
 
-### with browser bundle
+### browser bundle
 You can just set new parameters with `Calendarium.DateUtilities.loadLocale` method:
 
 ```html
@@ -144,7 +145,7 @@ You can just set new parameters with `Calendarium.DateUtilities.loadLocale` meth
 ```
 
 
-### with webpack + ES2015 or TypeScript
+### webpack + ES2015 or TypeScript
 
 ```javascript    
 import * as React from 'react';
