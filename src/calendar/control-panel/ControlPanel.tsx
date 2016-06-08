@@ -33,12 +33,16 @@ export class ControlPanel extends React.Component<IControlPanelProps, IControlPa
     // ADDITIONAL METHODS
     //
 
-    handleClickNow() {
+    handleClickNow(e) {
+        e.preventDefault();
+        // e.stopPropagation();
         this.props.onSelect(new Date());
     }
 
 
-    handleClickClose() {
+    handleClickClose(e) {
+        e.preventDefault();
+        // e.stopPropagation();
         this.props.onClose();
     }
 

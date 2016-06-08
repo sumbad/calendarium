@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "experimentalDecorators": true,
     "module": "commonjs",
     "jsx": "react",
     "sourceMap": true,
-    "outDir": "lib"
+    "declaration": false
   },
   "exclude": [
-    "node_modules",
-    "dist",
-    "src/calendarium.d.ts",
-    "dev"
+    "node_modules"
   ]
 }

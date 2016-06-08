@@ -11,7 +11,7 @@ const TARGET = process.env.npm_lifecycle_event;
 const PATHS = {
     src: path.join(__dirname, 'src'),
     node_modules: path.join(__dirname, 'node_modules'),
-    distr: path.join(__dirname, 'distr'),
+    dist: path.join(__dirname, 'dist'),
     dev: path.join(__dirname, 'dev')
 };
 
@@ -25,7 +25,7 @@ var BASE_CFG = {
         loaders: [
             {
                 test: /\.ts(x?)$/,
-                loader: 'ts-loader'
+                loader: "ts-loader"
             },
             {
                 test: /\.(png|jpg|gif|svg|ttf|eot|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -120,7 +120,7 @@ var BUILD_CFG = {
                 NODE_ENV: JSON.stringify("production")
             }
         }),
-        new CleanPlugin([PATHS.distr])
+        new CleanPlugin([PATHS.dist])
     ],
     externals: {
         'react-dom': {

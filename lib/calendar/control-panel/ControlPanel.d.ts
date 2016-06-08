@@ -8,6 +8,6 @@ export interface IControlPanelState {
 export declare class ControlPanel extends React.Component<IControlPanelProps, IControlPanelState> {
     constructor(props: IControlPanelProps);
     render(): JSX.Element;
-    handleClickNow(): void;
-    handleClickClose(): void;
+    handleClickNow(e: any): void;
+    handleClickClose(e: any): void;
 }

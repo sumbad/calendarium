@@ -110,7 +110,7 @@ export class DatePicker extends React.Component<IDatePickerProps, IDatePickerSta
         var trigger = ReactDOM.findDOMNode(this.refs["trigger"]);
         var rect = trigger.getBoundingClientRect();
         var isTopHalf = rect.top > window.innerHeight / 2;
-        var calendarHeight = 203;
+        var calendarHeight = 215;
         return {
             top: isTopHalf ? (rect.top + window.scrollY - calendarHeight - 3) : (rect.top + trigger.clientHeight + window.scrollY + 3),
             left: rect.left

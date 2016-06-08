@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import * as Calendarium from '../dist/calendarium';
+// import * as Calendarium from '../dist/calendarium';
+let Calendarium = require('../src/calendarium');
 const ru = require('../dist/locale/ru.json');
 
 
