@@ -5,7 +5,7 @@
  */
 
 import {Calendar} from './calendar/Calendar';
-import {DatePicker} from './Datepicker'
+import {DatePicker} from './DatePicker'
 import {DateUtilities} from './util/DateUtilities'
 
 

@@ -1,9 +1,10 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const _ = require('lodash');
 const CleanPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 
@@ -12,6 +13,7 @@ const PATHS = {
     src: path.join(__dirname, 'src'),
     node_modules: path.join(__dirname, 'node_modules'),
     dist: path.join(__dirname, 'dist'),
+    lib: path.join(__dirname, 'lib'),
     dev: path.join(__dirname, 'dev')
 };
 
@@ -33,11 +35,15 @@ var BASE_CFG = {
             },
             {
                 test: /\.css$/,
-                loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]"
+                loader:  ExtractTextPlugin.extract(
+                    'style-loader',
+                    'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:3]!postcss-loader')
             },
             {
                 test: /\.less$/,
-                loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!less-loader"
+                loader:  ExtractTextPlugin.extract(
+                    'style-loader',
+                    'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:3]!postcss-loader!less-loader')
             },
             {
                 include: /\.json$/,
@@ -45,7 +51,13 @@ var BASE_CFG = {
             }
         ]
     },
-    postcss: [autoprefixer({ browsers: ['last 2 versions', 'ie 8', 'ie 9'] })]
+    postcss: [autoprefixer({ browsers: ['last 2 versions', 'ie 8', 'ie 9'] })],
+    plugins: [
+        // Extract css text from js the file
+        new ExtractTextPlugin('[name].css', {
+            allChunks: false
+        })
+    ]
 };
 
 
@@ -97,7 +109,7 @@ var BUILD_CFG = {
     entry: {
         'dist/calendarium': [path.join(PATHS.src, 'calendarium.ts')],
         'dist/calendar': [path.join(PATHS.src, 'calendar/Calendar.tsx')],
-        'dist/datepicker': [path.join(PATHS.src, 'Datepicker.tsx')]
+        'dist/datepicker': [path.join(PATHS.src, 'DatePicker.tsx')]
     },
     output: {
         path: __dirname,
@@ -120,7 +132,22 @@ var BUILD_CFG = {
                 NODE_ENV: JSON.stringify("production")
             }
         }),
-        new CleanPlugin([PATHS.dist])
+        new CleanPlugin([PATHS.dist, PATHS.lib]),
+        // Copy directory contents to {output}/path/to/build/directory/
+        new CopyWebpackPlugin([
+            {
+                from: PATHS.src + '/locale',
+                to: PATHS.dist + '/locale'
+            },
+            {
+                from: PATHS.src + '/locale',
+                to: PATHS.lib + '/locale'
+            },
+            {
+                from: PATHS.src + '/calendarium.d.ts',
+                to: PATHS.dist + '/calendarium.d.ts'
+            }
+        ]),
     ],
     externals: {
         'react-dom': {

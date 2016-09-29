@@ -14,6 +14,10 @@ export declare class DateUtilities {
      */
     static formatDate(date: Date): any;
     /**
+     * Format UTC date
+     */
+    static formatDateUTC(date: Date): any;
+    /**
     * Convert day of the date to String
     */
     static toDayOfMonthString(date: Date): string;
@@ -21,6 +25,18 @@ export declare class DateUtilities {
      * Get month of the date
      */
     static toMonthString(date: any): any;
+    /**
+     * Get year of the date
+     */
+    static toYearString(date: any): any;
+    /**
+     * Get hours of the date
+     */
+    static toHoursString(date: any): string;
+    /**
+     * Get minutes of the date
+     */
+    static toMinutesString(date: any): string;
     /**
      * Get day of the week at number the "dayOfWeek", start from the "date" an dgo to the last
      */

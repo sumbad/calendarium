@@ -76,6 +76,10 @@ export declare class DateUtilities {
      */
     static formatDate(date: Date): any;
     /**
+     * Format date UTC
+     */
+    static formatDateUTC(date: Date): any;
+    /**
     * Convert day of the date to String
     */
     static toDayOfMonthString(date: Date): string;

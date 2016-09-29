@@ -3,6 +3,8 @@
 
 **calendarium** is a [React](http://facebook.github.io/react/) component for a datetime picker or just a calendar on your page.
 
+**Notice:** From 0.3.3 version you have to explicitly import/connect the file dist/calendarium.css in your project.
+
 **Notice:** This is currently a 0.x version. What this actually means is that it works in our project but we're too busy to write tests to be sure that it'll work in your project, too.
 
 
@@ -34,6 +36,7 @@ There are several approaches to use **calendarium**:
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="/calendarium.css"/>
     <script src="http://fb.me/react-0.14.0.js"></script>
     <script src="http://fb.me/react-dom-0.14.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
@@ -60,6 +63,7 @@ There are several approaches to use **calendarium**:
 ```javascript    
 var React = require('react');
 var ReactDOM = require('react-dom');
+require ('calendarium/dist/calendarium.css');
 
 var DatePicker = require('calendarium').DatePicker;
 
@@ -78,6 +82,8 @@ ReactDOM.render(
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {DatePicker} from 'calendarium';
+import 'calendarium/dist/calendarium.css';
+
 
 ReactDOM.render(<DatePicker id="myCDP1"/>, document.getElementById('datepicker'));
 ```
@@ -95,6 +101,7 @@ You can just set new parameters with `Calendarium.DateUtilities.loadLocale` meth
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="/calendarium.css"/>
     <script src="http://fb.me/react-0.14.0.js"></script>
     <script src="http://fb.me/react-dom-0.14.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
@@ -151,8 +158,9 @@ You can just set new parameters with `Calendarium.DateUtilities.loadLocale` meth
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import * as Calendarium from '../dist/calendarium';
-const ru = require('../dist/locale/ru.json');
+import 'calendarium/dist/calendarium.css';
+import * as Calendarium from 'calendarium';
+const ru = require('calendarium/dist/locale/ru.json');
 
 
 Calendarium.DateUtilities.loadLocale(ru);

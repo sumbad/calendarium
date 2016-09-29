@@ -54,6 +54,21 @@ export class DateUtilities {
         return format;//date.getFullYear() + "-" + DateUtilities.pad((date.getMonth() + 1).toString(), 2) + "-" + DateUtilities.pad(date.getDate().toString(), 2);
     }
     
+    /**
+     * Format UTC date
+     */
+    public static formatDateUTC(date: Date) {       
+        let format = this.locale.format;
+        
+        format = format.replace(/dd/g, DateUtilities.pad(date.getUTCDate().toString(), 2));
+        format = format.replace("MM", DateUtilities.pad((date.getUTCMonth() + 1).toString(), 2));
+        format = format.replace("YYYY", date.getUTCFullYear().toString());
+        format = format.replace("HH", DateUtilities.pad(date.getUTCHours().toString(), 2));
+        format = format.replace("mm", DateUtilities.pad(date.getUTCMinutes().toString(), 2));
+        
+        return format;//date.getFullYear() + "-" + DateUtilities.pad((date.getMonth() + 1).toString(), 2) + "-" + DateUtilities.pad(date.getDate().toString(), 2);
+    }
+    
 
     /**
     * Convert day of the date to String
@@ -68,6 +83,30 @@ export class DateUtilities {
      */
     public static toMonthString(date) {
         return this.locale.months[date.getMonth()];
+    }
+
+    
+    /**
+     * Get year of the date
+     */
+    public static toYearString(date) {
+        return date.getFullYear().toString();
+    }
+
+
+    /**
+     * Get hours of the date
+     */
+    public static toHoursString(date) {
+        return DateUtilities.pad(date.getHours().toString(), 2);
+    }
+
+
+    /**
+     * Get minutes of the date
+     */
+    public static toMinutesString(date) {
+        return DateUtilities.pad(date.getMinutes().toString(), 2);
     }
 
 

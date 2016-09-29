@@ -550,6 +550,7 @@
   padding: 6px;
 }
 .calendar .button-contour {
+  margin: 0;
   font-size: 14px;
   text-transform: uppercase;
   text-align: center;
@@ -577,6 +578,7 @@
   border-color: #ebebeb;
 }
 .calendar .button_relief {
+  margin: 0;
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
