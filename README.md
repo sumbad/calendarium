@@ -20,7 +20,7 @@ npm install calendarium --save
 
 The browser bundle exposes a global `Calendarium` variable and expects to find a global `React` (>= 0.14.0) variable to work with.
 
-* [calendarium.js](https://npmcdn.com/calendarium) (compressed version)
+* [calendarium.js](https://unpkg.com/calendarium) (compressed version)
 
 
 
@@ -40,7 +40,7 @@ There are several approaches to use **calendarium**:
     <script src="http://fb.me/react-0.14.0.js"></script>
     <script src="http://fb.me/react-dom-0.14.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://npmcdn.com/calendarium@0.2.7"></script>
+    <script src="https://unpkg.com/calendarium@0.2.7"></script>
 </head>
 <body>
     <div id="example"></div>
@@ -105,7 +105,7 @@ You can just set new parameters with `Calendarium.DateUtilities.loadLocale` meth
     <script src="http://fb.me/react-0.14.0.js"></script>
     <script src="http://fb.me/react-dom-0.14.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
-    <script src="https://npmcdn.com/calendarium@0.2.7"></script>
+    <script src="https://unpkg.com/calendarium@0.2.7"></script>
 </head>
 <body>
     <div id="example"></div>
